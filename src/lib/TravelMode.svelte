@@ -9,12 +9,19 @@
 
 	let { dayPlan, currentDate }: Props = $props();
 	let viewDateOffset = $state(0);
+	let imageError = $state(false);
 	let viewDate = $derived(() => {
 		const date = new Date(currentDate);
 		date.setDate(date.getDate() + viewDateOffset);
 		return date;
 	});
 	let currentDayPlan = $derived(getDayPlan(viewDate()) || dayPlan);
+
+	// Reset image error when day changes
+	$effect(() => {
+		currentDayPlan;
+		imageError = false;
+	});
 
 	function navigateDay(direction: number) {
 		viewDateOffset += direction;
@@ -29,9 +36,39 @@
 			year: "numeric",
 		});
 	}
+
+	function handleImageError() {
+		imageError = true;
+	}
 </script>
 
 <div class="space-y-6">
+	<!-- Hero Image with Region Badge -->
+	{#if currentDayPlan.heroImage && !imageError}
+		<div class="relative rounded-xl overflow-hidden shadow-lg">
+			<img
+				src={currentDayPlan.heroImage}
+				alt={currentDayPlan.heroImageAlt || currentDayPlan.region}
+				class="w-full h-48 md:h-64 object-cover"
+				loading="lazy"
+				onerror={handleImageError}
+			/>
+			<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+			<div class="absolute bottom-4 left-4 right-4">
+				<span class="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-sm font-semibold text-rose-900">
+					{currentDayPlan.region}
+				</span>
+			</div>
+		</div>
+	{:else}
+		<!-- Fallback when no image -->
+		<div class="bg-gradient-to-r from-rose-400 to-pink-500 rounded-xl p-6 shadow-lg">
+			<span class="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-sm font-semibold text-rose-900">
+				{currentDayPlan.region}
+			</span>
+		</div>
+	{/if}
+
 	<!-- Day Navigation -->
 	<div class="flex items-center justify-between gap-4">
 		<button
@@ -135,6 +172,48 @@
 			</div>
 		{/if}
 	</div>
+
+	<!-- Activities Section -->
+	{#if currentDayPlan.activities && currentDayPlan.activities.length > 0}
+		<div class="bg-white rounded-xl shadow-lg p-8">
+			<h3 class="text-xl font-bold text-rose-900 mb-6 flex items-center gap-2">
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+				</svg>
+				Today's Activities
+			</h3>
+			<div class="space-y-4">
+				{#each currentDayPlan.activities as activity, index}
+					<div class="relative pl-8 pb-4 {index < currentDayPlan.activities.length - 1 ? 'border-l-2 border-rose-200' : ''} ml-2">
+						<!-- Timeline dot -->
+						<div class="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-rose-500 border-2 border-white shadow"></div>
+						
+						<div class="bg-rose-50/50 rounded-lg p-4 hover:bg-rose-50 transition-colors">
+							<div class="flex items-start justify-between gap-2 mb-1">
+								<h4 class="font-semibold text-gray-900">{activity.name}</h4>
+								{#if activity.time}
+									<span class="text-xs px-2 py-1 bg-rose-100 text-rose-700 rounded-full font-medium whitespace-nowrap">
+										{activity.time}
+									</span>
+								{/if}
+							</div>
+							{#if activity.description}
+								<p class="text-gray-600 text-sm mb-2">{activity.description}</p>
+							{/if}
+							{#if activity.tip}
+								<div class="flex items-start gap-2 mt-2 p-2 bg-amber-50 rounded-md">
+									<svg class="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+									</svg>
+									<span class="text-sm text-amber-800"><strong>Tip:</strong> {activity.tip}</span>
+								</div>
+							{/if}
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	{/if}
 
 	<!-- Progress Bar -->
 	<div class="bg-white rounded-xl shadow-lg p-6">
