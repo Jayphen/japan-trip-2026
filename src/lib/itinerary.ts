@@ -6,6 +6,11 @@ export interface Activity {
   tip?: string;
 }
 
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
 export interface DayPlan {
   date: string; // YYYY-MM-DD
   dayNumber: number;
@@ -19,6 +24,7 @@ export interface DayPlan {
   heroImage?: string;
   heroImageAlt?: string;
   activities?: Activity[];
+  coordinates: Coordinates;
 }
 
 export const TRIP_START = "2026-01-29";
@@ -35,6 +41,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Asakusa",
     heroImage: "https://images.pexels.com/photos/14703207/pexels-photo-14703207.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Kaminarimon Gate at Senso-ji Temple, Asakusa",
+    coordinates: { lat: 35.7148, lng: 139.7967 },
     activities: [
       {
         name: "Narita to Asakusa",
@@ -61,6 +68,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Asakusa",
     heroImage: "https://images.pexels.com/photos/14703207/pexels-photo-14703207.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Kaminarimon Gate at Senso-ji Temple, Asakusa",
+    coordinates: { lat: 35.7148, lng: 139.7967 },
     activities: [
       {
         name: "Senso-ji Temple",
@@ -86,6 +94,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Asakusa",
     heroImage: "https://images.pexels.com/photos/14703207/pexels-photo-14703207.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Kaminarimon Gate at Senso-ji Temple, Asakusa",
+    coordinates: { lat: 35.7148, lng: 139.7967 },
     activities: [
       {
         name: "Day Trip Options",
@@ -106,6 +115,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Move to Minato",
@@ -127,6 +137,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Work Day",
@@ -147,6 +158,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Work Day",
@@ -167,6 +179,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Work Day",
@@ -183,6 +196,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Work Day",
@@ -199,6 +213,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Minato",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6586, lng: 139.7454 },
     activities: [
       {
         name: "Final Work Day",
@@ -222,6 +237,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Izu Peninsula",
     heroImage: "https://images.pexels.com/photos/8507106/pexels-photo-8507106.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Kawazu cherry blossoms in full bloom along the river",
+    coordinates: { lat: 35.0967, lng: 139.0714 },
     activities: [
       {
         name: "Ship Luggage to Kyoto",
@@ -255,6 +271,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Kyoto",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
+    coordinates: { lat: 35.0116, lng: 135.7681 },
     activities: [
       {
         name: "Shinkansen to Kyoto",
@@ -282,6 +299,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Kyoto",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
+    coordinates: { lat: 35.0116, lng: 135.7681 },
     activities: [
       {
         name: "Fushimi Inari Shrine",
@@ -308,6 +326,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Kyoto - Arashiyama",
     heroImage: "https://images.pexels.com/photos/18848739/pexels-photo-18848739.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Towering bamboo stalks in Arashiyama Bamboo Grove",
+    coordinates: { lat: 35.0094, lng: 135.6670 },
     activities: [
       {
         name: "Arashiyama Bamboo Grove",
@@ -339,6 +358,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Nara",
     heroImage: "https://images.pexels.com/photos/31156943/pexels-photo-31156943.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Friendly deer at Todai-ji Temple in Nara",
+    coordinates: { lat: 34.6851, lng: 135.8048 },
     activities: [
       {
         name: "Train to Nara",
@@ -371,6 +391,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Hiroshima",
     heroImage: "https://images.pexels.com/photos/31315377/pexels-photo-31315377.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Floating torii gate of Itsukushima Shrine at Miyajima",
+    coordinates: { lat: 34.3853, lng: 132.4553 },
     activities: [
       {
         name: "Ship Luggage to Tokyo",
@@ -408,6 +429,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Ginza",
     heroImage: "https://images.pexels.com/photos/31402541/pexels-photo-31402541.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Ginza district illuminated at night",
+    coordinates: { lat: 35.6717, lng: 139.7650 },
     activities: [
       {
         name: "Morning in Hiroshima",
@@ -437,6 +459,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Ginza",
     heroImage: "https://images.pexels.com/photos/31402541/pexels-photo-31402541.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Ginza district illuminated at night",
+    coordinates: { lat: 35.6717, lng: 139.7650 },
     activities: [
       {
         name: "teamLab Planets",
@@ -464,6 +487,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Akasaka",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower at night",
+    coordinates: { lat: 35.6744, lng: 139.7370 },
     activities: [
       {
         name: "Move to Akasaka",
@@ -490,6 +514,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Shibuya",
     heroImage: "https://images.pexels.com/photos/8002454/pexels-photo-8002454.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Shibuya Crossing from above",
+    coordinates: { lat: 35.6595, lng: 139.7004 },
     activities: [
       {
         name: "Free Morning",
@@ -521,6 +546,7 @@ export const itinerary: Record<string, DayPlan> = {
     region: "Tokyo - Departure",
     heroImage: "https://images.pexels.com/photos/19162388/pexels-photo-19162388.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Station Marunouchi Building",
+    coordinates: { lat: 35.6744, lng: 139.7370 },
     activities: [
       {
         name: "Morning Relax",

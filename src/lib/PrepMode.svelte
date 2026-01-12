@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Id } from "../../convex/_generated/dataModel";
+	import type { Id } from "../convex/_generated/dataModel";
 
 	interface Task {
 		_id: Id<"tasks">;
