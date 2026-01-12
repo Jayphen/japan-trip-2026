@@ -56,11 +56,23 @@
     <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-32 h-32 bg-black/10 rounded-full blur-xl"></div>
   </div>
 
+  <!-- Main Add Button (Desktop Friendly) -->
+  <button
+    onclick={() => showKeypad = true}
+    class="w-full py-3 bg-white border-2 border-emerald-500 text-emerald-700 rounded-xl font-bold hover:bg-emerald-50 transition-colors flex items-center justify-center gap-2 shadow-sm"
+  >
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+    </svg>
+    Add Expense
+  </button>
+
   <!-- Expense List -->
   <ExpenseList {expenses} onDelete={handleDelete} />
 
-  <!-- Add Button -->
-  <div class="fixed bottom-8 right-6 z-40">
+  <!-- FAB (Mobile only, hidden on desktop to avoid clutter/duplication or kept as sticky) -->
+  <!-- Keeping it for now as it's useful when scrolling a long list, but maybe hide on lg screens? -->
+  <div class="fixed bottom-8 right-6 z-40 md:hidden">
     <button
       onclick={() => showKeypad = true}
       class="w-14 h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-105 active:scale-95"
