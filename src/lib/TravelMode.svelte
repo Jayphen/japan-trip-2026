@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { DayPlan } from "./itinerary";
 	import { getDayPlan } from "./itinerary";
+	import DayMap from "./DayMap.svelte";
 
 	interface Props {
 		dayPlan: DayPlan;
@@ -214,6 +215,9 @@
 			</div>
 		</div>
 	{/if}
+
+	<!-- Day Map -->
+	<DayMap dayPlan={currentDayPlan} />
 
 	<!-- Progress Bar -->
 	<div class="bg-white rounded-xl shadow-lg p-6">
