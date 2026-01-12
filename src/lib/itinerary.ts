@@ -110,13 +110,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-01": {
     date: "2026-02-01",
     dayNumber: 4,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week Begins",
     logistics: "Wife uses 72hr Subway passes + Have Fun Pass",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Move to Minato",
@@ -132,13 +133,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-02": {
     date: "2026-02-02",
     dayNumber: 5,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week",
     logistics: "Wife uses 72hr Subway passes",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Work Day",
@@ -153,13 +155,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-03": {
     date: "2026-02-03",
     dayNumber: 6,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week",
     logistics: "Wife uses 72hr Subway passes",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Work Day",
@@ -174,13 +177,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-04": {
     date: "2026-02-04",
     dayNumber: 7,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week",
     logistics: "Wife uses 72hr Subway passes",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Work Day",
@@ -191,13 +195,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-05": {
     date: "2026-02-05",
     dayNumber: 8,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week",
     logistics: "Wife uses 72hr Subway passes",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Work Day",
@@ -208,13 +213,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-06": {
     date: "2026-02-06",
     dayNumber: 9,
-    hotel: "[Work Hotel - Minato]",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Work Week - Last Day",
     logistics: "Wife uses 72hr Subway passes",
-    region: "Tokyo - Minato",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
-    coordinates: { lat: 35.6586, lng: 139.7454 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Final Work Day",
