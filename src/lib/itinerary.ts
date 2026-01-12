@@ -4,6 +4,7 @@ export interface Activity {
   time?: string;
   imageUrl?: string;
   tip?: string;
+  coordinates?: Coordinates;
 }
 
 export interface Coordinates {
@@ -253,7 +254,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Kawazu Cherry Blossom Festival",
         description: "Walk along the Kawazu River lined with early-blooming cherry trees",
-        tip: "These cherry blossoms bloom weeks before the rest of Japan!"
+        tip: "These cherry blossoms bloom weeks before the rest of Japan!",
+        coordinates: { lat: 34.7531, lng: 138.9778 }
       },
       {
         name: "Stay in Atami",
@@ -304,7 +306,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Fushimi Inari Shrine",
         description: "Thousands of vermillion torii gates winding up the mountain",
-        tip: "Go early morning to beat the crowds and get the best photos"
+        tip: "Go early morning to beat the crowds and get the best photos",
+        coordinates: { lat: 34.9671, lng: 135.7727 }
       },
       {
         name: "Gion District",
@@ -313,7 +316,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Kiyomizu-dera Temple",
-        description: "Historic temple with stunning views over Kyoto"
+        description: "Historic temple with stunning views over Kyoto",
+        coordinates: { lat: 34.9949, lng: 135.7850 }
       }
     ]
   },
@@ -406,7 +410,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Miyajima Island",
         description: "Ferry to the sacred island to see the iconic floating torii gate",
-        tip: "Check tide times - the torii is stunning at both high and low tide"
+        tip: "Check tide times - the torii is stunning at both high and low tide",
+        coordinates: { lat: 34.2961, lng: 132.3198 }
       },
       {
         name: "Fresh Oysters",
@@ -465,7 +470,8 @@ export const itinerary: Record<string, DayPlan> = {
         name: "teamLab Planets",
         time: "10:00 AM",
         description: "Immersive digital art museum - walk through water and infinity mirror rooms",
-        tip: "Wear shorts or clothes you can roll up - you'll wade through knee-deep water!"
+        tip: "Wear shorts or clothes you can roll up - you'll wade through knee-deep water!",
+        coordinates: { lat: 35.6498, lng: 139.7905 }
       },
       {
         name: "Valentine's Day Lunch",
@@ -528,7 +534,8 @@ export const itinerary: Record<string, DayPlan> = {
         name: "Shibuya Sky",
         time: "Sunset",
         description: "360-degree views from 229m high observation deck",
-        tip: "Book the sunset time slot for the best experience - day AND night views!"
+        tip: "Book the sunset time slot for the best experience - day AND night views!",
+        coordinates: { lat: 35.6584, lng: 139.7022 }
       },
       {
         name: "Last Night in Tokyo",

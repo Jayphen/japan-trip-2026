@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from "svelte";
-	import { itinerary, type DayPlan, type Coordinates } from "./itinerary";
+	import { itinerary, type DayPlan, type Coordinates, type Activity } from "./itinerary";
 	import type L from "leaflet";
 
 	let mapContainer: HTMLDivElement;
@@ -20,6 +20,29 @@
 		});
 		
 		return Array.from(locationMap.values());
+	}
+
+	// Get activities with coordinates (points of interest)
+	function getActivityLocations(): Array<{ activity: Activity; day: DayPlan; coordinates: Coordinates }> {
+		const activities: Array<{ activity: Activity; day: DayPlan; coordinates: Coordinates }> = [];
+		
+		Object.values(itinerary).forEach(function(day) {
+			if (day.activities) {
+				day.activities.forEach(function(activity) {
+					if (activity.coordinates) {
+						// Skip if coordinates match the day's main coordinates (hotel)
+						const isDifferentLocation = 
+							activity.coordinates.lat !== day.coordinates.lat || 
+							activity.coordinates.lng !== day.coordinates.lng;
+						if (isDifferentLocation) {
+							activities.push({ activity, day, coordinates: activity.coordinates });
+						}
+					}
+				});
+			}
+		});
+		
+		return activities;
 	}
 
 	// Get journey path in order
@@ -71,8 +94,8 @@
 			maxZoom: 20,
 		}).addTo(map);
 
-		// Custom marker icon (sakura pink theme)
-		const markerIcon = L.divIcon({
+		// Custom marker icon for hotels (sakura pink theme)
+		const hotelIcon = L.divIcon({
 			className: "custom-marker",
 			html: `<div class="w-8 h-8 bg-rose-500 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
 				<div class="w-3 h-3 bg-white rounded-full"></div>
@@ -82,7 +105,18 @@
 			popupAnchor: [0, -16],
 		});
 
-		// Add markers for each unique location
+		// Custom marker icon for activities/POIs (amber theme, smaller)
+		const activityIcon = L.divIcon({
+			className: "custom-marker",
+			html: `<div class="w-6 h-6 bg-amber-500 rounded-full border-2 border-white shadow-md flex items-center justify-center">
+				<div class="w-2 h-2 bg-white rounded-full"></div>
+			</div>`,
+			iconSize: [24, 24],
+			iconAnchor: [12, 12],
+			popupAnchor: [0, -12],
+		});
+
+		// Add markers for each unique hotel location
 		const locations = getUniqueLocations();
 		locations.forEach(function(location) {
 			const { coordinates, days } = location;
@@ -105,12 +139,34 @@
 				<div class="p-2 min-w-48">
 					<div class="font-bold text-rose-900 text-lg mb-1">${firstDay.region}</div>
 					<div class="text-sm text-gray-600 mb-2">${dayRange} • ${dateRange}</div>
-					<div class="text-sm font-medium text-gray-800 mb-2">${firstDay.hotel}</div>
+					<div class="text-sm font-medium text-gray-800 mb-2">🏨 ${firstDay.hotel}</div>
 					<div class="text-xs text-gray-600">${uniqueActivities}</div>
 				</div>
 			`;
 			
-			L.marker([coordinates.lat, coordinates.lng], { icon: markerIcon })
+			L.marker([coordinates.lat, coordinates.lng], { icon: hotelIcon })
+				.addTo(map!)
+				.bindPopup(popupContent, {
+					className: "custom-popup",
+					maxWidth: 300,
+				});
+		});
+
+		// Add markers for activities with specific locations
+		const activityLocations = getActivityLocations();
+		activityLocations.forEach(function(item) {
+			const { activity, day, coordinates } = item;
+			
+			const popupContent = `
+				<div class="p-2 min-w-48">
+					<div class="font-bold text-amber-800 text-lg mb-1">${activity.name}</div>
+					<div class="text-sm text-gray-600 mb-2">Day ${day.dayNumber} • ${formatDate(day.date)}</div>
+					${activity.description ? `<div class="text-sm text-gray-700 mb-2">${activity.description}</div>` : ''}
+					${activity.tip ? `<div class="text-xs text-amber-700 bg-amber-50 p-2 rounded">💡 ${activity.tip}</div>` : ''}
+				</div>
+			`;
+			
+			L.marker([coordinates.lat, coordinates.lng], { icon: activityIcon })
 				.addTo(map!)
 				.bindPopup(popupContent, {
 					className: "custom-popup",
@@ -131,8 +187,12 @@
 			dashArray: "10, 10",
 		}).addTo(map);
 
-		// Fit bounds to show all markers
-		const bounds = L.latLngBounds(latLngs);
+		// Fit bounds to show all markers (including activities)
+		const allLatLngs = [...latLngs];
+		activityLocations.forEach(function(item) {
+			allLatLngs.push([item.coordinates.lat, item.coordinates.lng]);
+		});
+		const bounds = L.latLngBounds(allLatLngs);
 		map.fitBounds(bounds, { padding: [50, 50] });
 	});
 
