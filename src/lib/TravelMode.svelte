@@ -8,13 +8,16 @@
 	}
 
 	let { dayPlan, currentDate }: Props = $props();
-	let viewDate = $state(currentDate);
-	let currentDayPlan = $derived(getDayPlan(viewDate) || dayPlan);
+	let viewDateOffset = $state(0);
+	let viewDate = $derived(() => {
+		const date = new Date(currentDate);
+		date.setDate(date.getDate() + viewDateOffset);
+		return date;
+	});
+	let currentDayPlan = $derived(getDayPlan(viewDate()) || dayPlan);
 
 	function navigateDay(direction: number) {
-		const newDate = new Date(viewDate);
-		newDate.setDate(newDate.getDate() + direction);
-		viewDate = newDate;
+		viewDateOffset += direction;
 	}
 
 	function formatDate(dateStr: string): string {

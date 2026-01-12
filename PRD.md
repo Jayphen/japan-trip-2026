@@ -244,3 +244,33 @@ Use **Tailwind CSS** with clean, minimalist card layouts.
 - **Pre-Trip Tasks:** 10 items
 - **Major Train Journeys:** 3 (Saphir Odoriko, 2x Shinkansen)
 - **Key Activities:** teamLab Planets, Shibuya Sky, Nara Day Trip
+
+---
+
+## 9. Implementation Status
+
+All features from this PRD have been implemented. The following items are complete:
+
+| Feature | Status |
+|---------|--------|
+| Convex schema (tasks table) | Complete |
+| Convex functions (list, toggle, seed) | Complete |
+| Itinerary data (20 days) | Complete |
+| Helper functions (getDayPlan, isBeforeTrip, etc.) | Complete |
+| Prep Mode UI | Complete |
+| Travel Mode UI | Complete |
+| Trip Complete state | Complete |
+| Debug date picker | Complete |
+| Task toggle functionality | Complete |
+| Overdue task highlighting | Complete |
+| Stats bar (completed/remaining/overdue) | Complete |
+| Day navigation (Yesterday/Tomorrow) | Complete |
+| Progress bar | Complete |
+| Hotel links (Google Maps) | Complete |
+| Train info section (blue) | Complete |
+| Logistics alert section (amber) | Complete |
+| Tailwind styling per spec | Complete |
+
+### Recent Updates
+
+- **2026-01-12**: Fixed reactive state bug in TravelMode.svelte where viewDate wasn't updating when the debug date picker changed the currentDate prop
