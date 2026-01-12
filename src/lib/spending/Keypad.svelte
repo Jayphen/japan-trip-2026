@@ -114,16 +114,16 @@
         </button>
       {/each}
       <button
-        class="h-16 bg-white rounded-lg shadow-sm text-xl font-medium text-red-500 hover:bg-red-50 active:scale-95 transition-all"
-        onclick={handleClear}
-      >
-        C
-      </button>
-      <button
         class="h-16 bg-white rounded-lg shadow-sm text-2xl font-semibold text-gray-700 hover:bg-gray-50 active:scale-95 transition-all"
         onclick={() => handleDigit("0")}
       >
         0
+      </button>
+      <button
+        class="h-16 bg-white rounded-lg shadow-sm text-2xl font-semibold text-gray-700 hover:bg-gray-50 active:scale-95 transition-all"
+        onclick={() => handleDigit("00")}
+      >
+        00
       </button>
       <button
         class="h-16 bg-white rounded-lg shadow-sm flex items-center justify-center text-gray-700 hover:bg-gray-50 active:scale-95 transition-all"
@@ -132,6 +132,12 @@
         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z" />
         </svg>
+      </button>
+      <button
+        class="h-16 bg-white rounded-lg shadow-sm text-xl font-medium text-red-500 hover:bg-red-50 active:scale-95 transition-all col-span-3 mt-1"
+        onclick={handleClear}
+      >
+        Clear All
       </button>
     </div>
 
