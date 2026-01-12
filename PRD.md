@@ -40,6 +40,27 @@ The app uses Convex to persist the state of the "To-Do" list.
 
 Store as a constant object/array in `src/lib/itinerary.ts`. The structure allows looking up a specific date to get that day's plan.
 
+### Coordinates Interface
+
+```typescript
+{
+  lat: number;            // Latitude
+  lng: number;            // Longitude
+}
+```
+
+### Activity Interface
+
+```typescript
+{
+  name: string;           // Activity name
+  description?: string;   // Details about the activity
+  time?: string;          // Scheduled time (e.g., "10:00 AM")
+  tip?: string;           // Helpful tip for the activity
+  coordinates?: Coordinates; // Location for map display
+}
+```
+
 ### DayPlan Interface
 
 ```typescript
@@ -51,6 +72,11 @@ Store as a constant object/array in `src/lib/itinerary.ts`. The structure allows
   mainActivity: string;   // Primary activity
   logistics?: string;     // Important notes
   trainInfo?: string;     // Train schedules
+  region: string;         // Geographic region (e.g., "Tokyo - Asakusa")
+  heroImage?: string;     // Hero image URL for the day
+  heroImageAlt?: string;  // Alt text for hero image
+  activities?: Activity[]; // Detailed activities for the day
+  coordinates: Coordinates; // Location coordinates for map
 }
 ```
 
@@ -63,12 +89,12 @@ Store as a constant object/array in `src/lib/itinerary.ts`. The structure allows
 | 1 | Jan 29 | Tosei Hotel Cocone Asakusa | Arrival Day | Pick up Skyliner tickets |
 | 2 | Jan 30 | Tosei Hotel Cocone Asakusa | Tokyo Explore | — |
 | 3 | Jan 31 | Tosei Hotel Cocone Asakusa | Tokyo Explore | — |
-| 4 | Feb 1 | [Work Hotel - Minato] | Work Week Begins | Wife uses 72hr Subway passes |
-| 5 | Feb 2 | [Work Hotel - Minato] | Work Week | Wife uses 72hr Subway passes |
-| 6 | Feb 3 | [Work Hotel - Minato] | Work Week | Wife uses 72hr Subway passes |
-| 7 | Feb 4 | [Work Hotel - Minato] | Work Week | Wife uses 72hr Subway passes |
-| 8 | Feb 5 | [Work Hotel - Minato] | Work Week | Wife uses 72hr Subway passes |
-| 9 | Feb 6 | [Work Hotel - Minato] | Work Week | Wife uses 72hr Subway passes |
+| 4 | Feb 1 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week Begins | Wife uses 72hr Subway passes |
+| 5 | Feb 2 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week | Wife uses 72hr Subway passes |
+| 6 | Feb 3 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week | Wife uses 72hr Subway passes |
+| 7 | Feb 4 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week | Wife uses 72hr Subway passes |
+| 8 | Feb 5 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week | Wife uses 72hr Subway passes |
+| 9 | Feb 6 | Mitsui Garden Hotel Shiodome Italia-gai | Work Week | Wife uses 72hr Subway passes |
 | 10 | Feb 7 | Prince Smart Inn Atami | Izu Trip | Ship luggage to Kyoto Gate Hotel. Train: Saphir Odoriko (Tokyo → Kawazu) |
 | 11 | Feb 8 | The Gate Hotel Takasegawa (Kyoto) | Travel to Kyoto | Shinkansen Atami → Kyoto (Seat E) |
 | 12 | Feb 9 | The Gate Hotel Takasegawa (Kyoto) | Kyoto Exploration | — |
@@ -149,17 +175,69 @@ These tasks are seeded into the Convex `tasks` table:
 src/
 ├── routes/
 │   ├── +layout.svelte      # Root layout with Convex provider
-│   └── +page.svelte        # Main app with mode detection
-└── lib/
-    ├── itinerary.ts        # Trip data and helper functions
-    ├── PrepMode.svelte     # Pre-trip checklist UI
-    ├── TravelMode.svelte   # Daily itinerary UI
-    └── ConvexClientProvider.svelte
+│   ├── +page.svelte        # Main app with mode detection
+│   └── map/
+│       └── +page.svelte    # Full trip map page
+├── lib/
+│   ├── itinerary.ts        # Trip data and helper functions
+│   ├── PrepMode.svelte     # Pre-trip checklist UI
+│   ├── TravelMode.svelte   # Daily itinerary UI
+│   ├── MapView.svelte      # Full trip interactive map
+│   ├── DayMap.svelte       # Mini map for each day
+│   └── ConvexClientProvider.svelte
+└── convex/
+    ├── schema.ts           # Convex schema definition
+    ├── tasks.ts            # Convex functions
+    └── _generated/         # Auto-generated Convex files
 ```
 
 ---
 
-## 6. Styling
+## 6. Interactive Maps
+
+The app includes interactive maps powered by **Leaflet** with **CartoDB Voyager** tiles (English labels).
+
+### Full Trip Map (`/map`)
+
+- Accessible via "View Trip Map" button in header
+- Shows all trip locations on a map of Japan
+- **Pink markers** (larger): Hotel/overnight locations
+- **Amber markers** (smaller): Day trip activities and points of interest
+- Dashed polyline connecting the journey path in order
+- Clickable markers with popups showing:
+  - Region name and date range
+  - Hotel name
+  - Main activities
+- Mobile-friendly with touch gestures (pinch-to-zoom, pan)
+
+### Day Mini Map (in Travel Mode)
+
+- Embedded in each day's itinerary view
+- Shows that day's hotel and any activities with coordinates
+- Draws lines between multiple locations on the same day
+- Links to full trip map
+
+### Map Marker Types
+
+| Marker | Color | Icon | Purpose |
+|--------|-------|------|---------|
+| Hotel | Rose/Pink | Home | Overnight stay location |
+| Activity | Amber | Pin | Day trip or POI |
+
+### Activity Locations
+
+The following activities have specific coordinates for multi-location days:
+
+- Kawazu Cherry Blossom Festival (Day 10)
+- Fushimi Inari Shrine (Day 12)
+- Kiyomizu-dera Temple (Day 12)
+- Miyajima Island (Day 15)
+- teamLab Planets (Day 17)
+- Shibuya Sky (Day 19)
+
+---
+
+## 7. Styling
 
 Use **Tailwind CSS** with clean, minimalist card layouts.
 
@@ -208,7 +286,7 @@ Use **Tailwind CSS** with clean, minimalist card layouts.
 
 ---
 
-## 7. Technical Details
+## 8. Technical Details
 
 ### Dependencies
 
@@ -218,8 +296,17 @@ Use **Tailwind CSS** with clean, minimalist card layouts.
   "svelte": "^5.45.6",
   "tailwindcss": "^4.1.18",
   "convex": "^1.31.3",
+  "leaflet": "^1.9.4",
   "typescript": "^5.9.3",
   "vite": "^7.2.6"
+}
+```
+
+### Dev Dependencies
+
+```json
+{
+  "@types/leaflet": "^1.9.x"
 }
 ```
 
@@ -236,7 +323,7 @@ Use **Tailwind CSS** with clean, minimalist card layouts.
 
 ---
 
-## 8. Key Metrics
+## 9. Key Metrics
 
 - **Trip Duration:** 20 days
 - **Cities Visited:** 4 (Tokyo, Izu, Kyoto, Hiroshima)
@@ -247,7 +334,7 @@ Use **Tailwind CSS** with clean, minimalist card layouts.
 
 ---
 
-## 9. Implementation Status
+## 10. Implementation Status
 
 All features from this PRD have been implemented. The following items are complete:
 
@@ -270,7 +357,24 @@ All features from this PRD have been implemented. The following items are comple
 | Train info section (blue) | Complete |
 | Logistics alert section (amber) | Complete |
 | Tailwind styling per spec | Complete |
+| Enhanced itinerary with activities & tips | Complete |
+| Hero images for each day | Complete |
+| Region badges | Complete |
+| Full trip map (`/map` route) | Complete |
+| Leaflet integration with CartoDB tiles | Complete |
+| Hotel markers (pink) | Complete |
+| Activity markers (amber) | Complete |
+| Journey polyline | Complete |
+| Day mini map in Travel Mode | Complete |
+| Activity coordinates support | Complete |
+| Work hotel details (Mitsui Garden Shiodome) | Complete |
 
 ### Recent Updates
 
 - **2026-01-12**: Fixed reactive state bug in TravelMode.svelte where viewDate wasn't updating when the debug date picker changed the currentDate prop
+- **2026-01-12**: Added interactive map page with Leaflet showing full trip journey
+- **2026-01-12**: Added coordinates to itinerary for all locations
+- **2026-01-12**: Added activity coordinates for multi-location days (Kawazu, Miyajima, etc.)
+- **2026-01-12**: Added mini map to each day's itinerary view
+- **2026-01-12**: Updated work hotel to Mitsui Garden Hotel Shiodome Italia-gai
+- **2026-01-12**: Switched to CartoDB Voyager tiles for English map labels
