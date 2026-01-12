@@ -52,17 +52,32 @@
       </h1>
 
       <!-- Map Link -->
-      <a
-        href="/map"
-        class="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-lg font-semibold transition-all {showPrepMode
-          ? 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200'
-          : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-        </svg>
-        View Trip Map
-      </a>
+      <div class="flex flex-wrap justify-center gap-4 mb-4">
+        <a
+          href="/map"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all {showPrepMode
+            ? 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200'
+            : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          View Trip Map
+        </a>
+
+        <a
+          href="/stats"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all {showPrepMode
+            ? 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200'
+            : 'bg-rose-100 text-rose-800 hover:bg-rose-200'}"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+          </svg>
+          Spending Stats
+        </a>
+      </div>
 
       <!-- Debug Date Picker -->
       <div
