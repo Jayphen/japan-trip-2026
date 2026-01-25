@@ -5,6 +5,7 @@
   import ExpenseList from "./ExpenseList.svelte";
   import Keypad from "./Keypad.svelte";
   import type { Id } from "../../convex/_generated/dataModel";
+  import { browser } from "$app/environment";
 
   interface Props {
     date: string; // YYYY-MM-DD
@@ -14,10 +15,10 @@
 
   const client = useConvexClient();
   
-  // Reactive query
-  const expensesQuery = useQuery(api.expenses.list, () => ({ date }));
+  // Only run query in browser (not during prerender)
+  const expensesQuery = browser ? useQuery(api.expenses.list, () => ({ date })) : null;
   
-  let expenses = $derived(expensesQuery.data || []);
+  let expenses = $derived(expensesQuery?.data || []);
   let totalJpy = $derived(expenses.reduce((sum, e) => sum + e.amount, 0));
   let totalAud = $derived(convertToHomeCurrency(totalJpy, date));
   
