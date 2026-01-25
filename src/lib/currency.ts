@@ -1,10 +1,60 @@
-// Exchange rate: 1 AUD = 95 JPY
-export const EXCHANGE_RATE_AUD_TO_JPY = 95;
+/**
+ * Currency utilities with real-time exchange rate support
+ * Exchange rates are fetched from exchangerate-api.com and cached per day
+ */
+
+// Default fallback rate
+const FALLBACK_AUD_TO_JPY = 97.5;
+
 export const HOME_CURRENCY_CODE = "AUD";
 
-export function convertToHomeCurrency(jpyAmount: number): number {
-  if (!jpyAmount) return 0;
-  return jpyAmount / EXCHANGE_RATE_AUD_TO_JPY;
+// Import exchange rate service
+import { getExchangeRate, getRateInfo } from './exchange-rates';
+
+/**
+ * Get today's exchange rate from cache or API
+ */
+export async function getCurrentRate(): Promise<number> {
+  try {
+    const rate = await getExchangeRate();
+    return rate.audToJpy;
+  } catch (e) {
+    console.warn('Failed to get exchange rate, using fallback');
+    return FALLBACK_AUD_TO_JPY;
+  }
+}
+
+/**
+ * Convert JPY to AUD using current or historical rate
+ */
+export async function convertToHomeCurrency(
+  jpyAmount: number,
+  date?: string
+): Promise<number> {
+  if (!jpyAmount || jpyAmount === 0) return 0;
+  
+  try {
+    const rate = await getExchangeRate(date);
+    const audAmount = jpyAmount / rate.audToJpy;
+    return Math.round(audAmount * 100) / 100;
+  } catch (e) {
+    // Fallback calculation
+    const rate = await getCurrentRate();
+    const audAmount = jpyAmount / rate;
+    return Math.round(audAmount * 100) / 100;
+  }
+}
+
+/**
+ * Get exchange rate info for display
+ */
+export async function getRateDisplay(date?: string): Promise<string> {
+  try {
+    const info = await getRateInfo(date);
+    return info.formatted;
+  } catch (e) {
+    return `1 AUD = ${FALLBACK_AUD_TO_JPY.toFixed(2)} JPY (estimated)`;
+  }
 }
 
 export function formatCurrency(amount: number, currency: "JPY" | "AUD"): string {

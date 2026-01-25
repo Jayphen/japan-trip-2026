@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useQuery, useConvexClient } from "convex-svelte";
   import { api } from "../../convex/_generated/api";
-  import { formatCurrency, convertToHomeCurrency } from "$lib/currency";
+  import { formatCurrency, convertToHomeCurrency, getRateDisplay, getCurrentRate } from "$lib/currency";
   import ExpenseList from "./ExpenseList.svelte";
   import Keypad from "./Keypad.svelte";
   import type { Id } from "../../convex/_generated/dataModel";
@@ -19,7 +19,22 @@
   
   let expenses = $derived(expensesQuery.data || []);
   let totalJpy = $derived(expenses.reduce((sum, e) => sum + e.amount, 0));
-  let totalAud = $derived(convertToHomeCurrency(totalJpy));
+  let totalAud = $derived(convertToHomeCurrency(totalJpy, date));
+  
+  // Exchange rate display
+  let rateDisplay = $state("Loading...");
+  let exchangeRate = $state(97.5);
+
+  async function loadRateInfo() {
+    try {
+      rateDisplay = await getRateDisplay();
+      exchangeRate = await getCurrentRate();
+    } catch (e) {
+      rateDisplay = "1 AUD = 97.5 JPY (estimated)";
+    }
+  }
+
+  loadRateInfo();
   
   let showKeypad = $state(false);
 
@@ -49,6 +64,12 @@
       </div>
       <p class="text-emerald-100 mt-1 font-medium text-lg">
         ≈ {formatCurrency(totalAud, "AUD")}
+      </p>
+      <p class="text-emerald-200 text-xs mt-2 flex items-center gap-1">
+        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Exchange: {rateDisplay}
       </p>
     </div>
     <!-- Decorative background blobs -->

@@ -48,7 +48,7 @@
         <!-- Amount -->
         <div class="text-right">
           <div class="font-bold text-gray-900">{formatCurrency(expense.amount, "JPY")}</div>
-          <div class="text-xs text-gray-500">≈ {formatCurrency(convertToHomeCurrency(expense.amount), "AUD")}</div>
+          <div class="text-xs text-gray-500">≈ {formatCurrency(await convertToHomeCurrency(expense.amount, expense.date), "AUD")}</div>
         </div>
 
         <!-- Delete Action (Swipe or Button) -->
