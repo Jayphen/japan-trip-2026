@@ -9,7 +9,7 @@ const FALLBACK_AUD_TO_JPY = 97.5;
 export const HOME_CURRENCY_CODE = "AUD";
 
 // Import exchange rate service
-import { getExchangeRate, getRateInfo } from './exchange-rates';
+import { getExchangeRate, getRateInfo, getCachedRate, convertJpyToAudSync } from './exchange-rates';
 
 /**
  * Get today's exchange rate from cache or API
@@ -25,7 +25,7 @@ export async function getCurrentRate(): Promise<number> {
 }
 
 /**
- * Convert JPY to AUD using current or historical rate
+ * Convert JPY to AUD using current or historical rate (async)
  */
 export async function convertToHomeCurrency(
   jpyAmount: number,
@@ -43,6 +43,14 @@ export async function convertToHomeCurrency(
     const audAmount = jpyAmount / rate;
     return Math.round(audAmount * 100) / 100;
   }
+}
+
+/**
+ * Convert JPY to AUD synchronously (uses cached rate)
+ * Use this for template expressions
+ */
+export function convertJpyToAud(jpyAmount: number, date: string): number {
+  return convertJpyToAudSync(jpyAmount, date);
 }
 
 /**

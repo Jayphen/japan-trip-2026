@@ -133,6 +133,26 @@ export async function getExchangeRate(date?: string): Promise<ExchangeRate> {
 }
 
 /**
+ * Get rate synchronously from cache (returns 97.5 if not found)
+ * Use this for synchronous conversions in templates
+ */
+export function getCachedRate(date: string): number {
+  if (rateCache.has(date)) {
+    return rateCache.get(date)!.audToJpy;
+  }
+  return 97.5; // Default fallback
+}
+
+/**
+ * Convert JPY to AUD synchronously (uses cached rate)
+ */
+export function convertJpyToAudSync(jpyAmount: number, date: string): number {
+  if (!jpyAmount || jpyAmount === 0) return 0;
+  const rate = getCachedRate(date);
+  return Math.round((jpyAmount / rate) * 100) / 100;
+}
+
+/**
  * Update exchange rate for today (or specified date)
  */
 export async function updateExchangeRate(date?: string): Promise<ExchangeRate> {

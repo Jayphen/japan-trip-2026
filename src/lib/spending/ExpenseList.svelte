@@ -2,7 +2,7 @@
   import { flip } from "svelte/animate";
   import { fade, slide } from "svelte/transition";
   import CategoryIcon from "./CategoryIcon.svelte";
-  import { formatCurrency, convertToHomeCurrency } from "$lib/currency";
+  import { formatCurrency, convertToHomeCurrency, convertJpyToAud } from "$lib/currency";
   import type { Id } from "../../convex/_generated/dataModel";
 
   interface Expense {
@@ -20,6 +20,14 @@
   }
 
   let { expenses, onDelete } = $props();
+
+  // Pre-compute AUD amounts
+  let expensesWithAud = $derived(
+    Promise.all(expenses.map(async (e) => ({
+      ...e,
+      audAmount: await convertToHomeCurrency(e.amount, e.date)
+    })))
+  );
 </script>
 
 <div class="space-y-3">
@@ -48,7 +56,7 @@
         <!-- Amount -->
         <div class="text-right">
           <div class="font-bold text-gray-900">{formatCurrency(expense.amount, "JPY")}</div>
-          <div class="text-xs text-gray-500">≈ {formatCurrency(await convertToHomeCurrency(expense.amount, expense.date), "AUD")}</div>
+          <div class="text-xs text-gray-500">≈ {formatCurrency(convertJpyToAud(expense.amount, expense.date), "AUD")}</div>
         </div>
 
         <!-- Delete Action (Swipe or Button) -->
