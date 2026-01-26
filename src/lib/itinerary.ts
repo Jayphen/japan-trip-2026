@@ -119,7 +119,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Last Night in Asakusa",
-        description: "Enjoy the traditional atmosphere before moving to Minato tomorrow"
+        description: "Enjoy the traditional atmosphere before moving to Minato tomorrow",
+        tip: "Take a final night stroll to see Senso-ji lit up without crowds"
       }
     ]
   },
@@ -138,7 +139,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Move to Minato",
         description: "Check into work hotel in Minato area",
-        coordinates: { lat: 35.6614, lng: 139.7570 }
+        coordinates: { lat: 35.6614, lng: 139.7570 },
+        tip: "Use the TaxisGo app if luggage is heavy; Shiodome can be a bit of a walk"
       },
       {
         name: "Wife's Solo Adventure",
@@ -168,7 +170,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Evening Exploration",
         description: "Explore Roppongi or Tokyo Tower area after work",
-        coordinates: { lat: 35.6586, lng: 139.7454 }
+        coordinates: { lat: 35.6586, lng: 139.7454 },
+        tip: "Visit the Tokyo Tower main deck for a classic view, or Zojoji Temple right next door"
       }
     ]
   },
@@ -186,7 +189,8 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Work Day",
-        description: "Work commitments during the day"
+        description: "Work commitments during the day",
+        tip: "Shiodome City Center has a great view from the upper floor restaurants"
       },
       {
         name: "Setsubun Festival",
@@ -196,7 +200,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Dinner Plans",
-        description: "Try local izakaya or ramen near the hotel"
+        description: "Try local izakaya or ramen near the hotel",
+        tip: "Shinbashi (nearby) is the salaryman capital - packed with authentic, cheap izakayas under the train tracks"
       }
     ]
   },
@@ -296,7 +301,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Stay in Atami",
         description: "Coastal hot spring town - relax at Prince Smart Inn",
-        coordinates: { lat: 35.1017, lng: 139.0761 }
+        coordinates: { lat: 35.1017, lng: 139.0761 },
+        tip: "Check out the Heiwadori Shopping Street near the station for steaming onsen manju buns"
       }
     ]
   },
@@ -416,7 +422,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Train to Nara",
         description: "45-minute ride from Kyoto to Japan's first permanent capital",
-        coordinates: { lat: 34.9858, lng: 135.7588 }
+        coordinates: { lat: 34.9858, lng: 135.7588 },
+        tip: "Take the Kintetsu line for a faster trip that drops you closer to Nara Park than JR"
       },
       {
         name: "Nara Park & Deer",
@@ -476,7 +483,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Itsukushima Shrine",
         description: "UNESCO World Heritage shrine that appears to float at high tide",
-        coordinates: { lat: 34.2959, lng: 132.3198 }
+        coordinates: { lat: 34.2959, lng: 132.3198 },
+        tip: "Walk out to the torii gate at low tide for a unique perspective and photo op"
       },
       {
         name: "Dinner at Okonomimura",
@@ -512,11 +520,13 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Check into Ginza",
         description: "Royal Park Canvas Ginza Corridor - your luggage will be waiting!",
-        coordinates: { lat: 35.6708, lng: 139.7600 }
+        coordinates: { lat: 35.6708, lng: 139.7600 },
+        tip: "The hotel has a cool lounge/terrace space perfect for chilling with a drink"
       },
       {
         name: "Evening in Ginza",
-        description: "Explore Tokyo's upscale shopping and dining district"
+        description: "Explore Tokyo's upscale shopping and dining district",
+        tip: "Visit the Ginza Six rooftop garden for a free, beautiful view of the city skyline"
       }
     ]
   },
@@ -540,7 +550,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Valentine's Day Lunch",
-        description: "Romantic lunch in the Toyosu or Ginza area"
+        description: "Romantic lunch in the Toyosu or Ginza area",
+        tip: "Tsukiji Outer Market is walkable from teamLab - get the freshest sushi of your life"
       },
       {
         name: "Fancy Dinner",
@@ -563,7 +574,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Move to Akasaka",
         description: "Check into Super Hotel Premier Akasaka",
-        coordinates: { lat: 35.6738, lng: 139.7360 }
+        coordinates: { lat: 35.6738, lng: 139.7360 },
+        tip: "Akasaka Sacas and Biz Tower offer sleek modern dining options right nearby"
       },
       {
         name: "Hotel Onsen",
@@ -572,7 +584,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Slow Day",
-        description: "Rest and recharge - do some last-minute shopping if desired"
+        description: "Rest and recharge - do some last-minute shopping if desired",
+        tip: "Hie Shrine in Akasaka has a beautiful tunnel of red torii gates (like Fushimi Inari but smaller)"
       }
     ]
   },
@@ -595,7 +608,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Shibuya Exploration",
         description: "Visit Shibuya Crossing, Hachiko statue, and explore the vibrant district",
-        coordinates: { lat: 35.6595, lng: 139.7004 }
+        coordinates: { lat: 35.6595, lng: 139.7004 },
+        tip: "Check out Miyashita Park - a cool rooftop park with shopping and food below"
       },
       {
         name: "Shibuya Sky",
@@ -606,7 +620,8 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Last Night in Tokyo",
-        description: "Farewell dinner and drinks in Shibuya or return to favorite spots"
+        description: "Farewell dinner and drinks in Shibuya or return to favorite spots",
+        tip: "Nonbei Yokocho (Drunkard's Alley) offers a nostalgic, tight-knit bar experience"
       }
     ]
   },
@@ -624,7 +639,8 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Morning Relax",
-        description: "Last morning in Japan - enjoy hotel breakfast and onsen one more time"
+        description: "Last morning in Japan - enjoy hotel breakfast and onsen one more time",
+        tip: "Grab a coffee at a local kissaten (traditional coffee shop) for a retro vibe"
       },
       {
         name: "Last-Minute Shopping",
@@ -640,7 +656,8 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Narita Express",
         description: "N'EX train from Tokyo Station to Narita Airport",
-        coordinates: { lat: 35.6812, lng: 139.7671 }
+        coordinates: { lat: 35.6812, lng: 139.7671 },
+        tip: "Reserve your seats in advance, even with a pass, as it's all reserved seating"
       },
       {
         name: "Flight Home",
