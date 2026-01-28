@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { useQuery, useConvexClient } from "convex-svelte";
-  import { api } from "../convex/_generated/api";
   import { isBeforeTrip, getDaysUntilTrip, getDayPlan } from "$lib/itinerary";
   import PrepMode from "$lib/PrepMode.svelte";
   import TravelMode from "$lib/TravelMode.svelte";
+  import { browser } from "$app/environment";
+  import { onMount } from "svelte";
 
   let debugDate = $state(new Date());
   let currentDate = $derived(debugDate);
@@ -11,8 +11,25 @@
   let daysUntil = $derived(getDaysUntilTrip(currentDate));
   let dayPlan = $derived(getDayPlan(currentDate));
 
-  const client = useConvexClient();
-  const tasks = useQuery(api.tasks.list, {});
+  // Skip Convex during SSR/preview
+  let tasks: any[] = $state([]);
+  let client: any;
+  let api: any;
+  
+  onMount(async () => {
+    if (browser) {
+      try {
+        const convex = await import("convex-svelte");
+        const convexApi = await import("../convex/_generated/api");
+        api = convexApi.api;
+        client = convex.useConvexClient();
+        const q = convex.useQuery(api.tasks.list, {});
+        q.subscribe((data: any[]) => { tasks = data || []; });
+      } catch (e) {
+        // Convex not available
+      }
+    }
+  });
 
   function formatDateForInput(date: Date): string {
     const year = date.getFullYear();
@@ -27,11 +44,15 @@
   }
 
   async function handleToggle(taskId: string) {
-    await client.mutation(api.tasks.toggle, { id: taskId as any });
+    if (client) {
+      await client.mutation(api.tasks.toggle, { id: taskId as any });
+    }
   }
 
   async function handleSeed() {
-    await client.mutation(api.tasks.seed, {});
+    if (client) {
+      await client.mutation(api.tasks.seed, {});
+    }
   }
 </script>
 

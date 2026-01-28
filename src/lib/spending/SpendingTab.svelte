@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { useQuery, useConvexClient } from "convex-svelte";
-  import { api } from "../../convex/_generated/api";
   import { formatCurrency, convertToHomeCurrency, getRateDisplay, getCurrentRate } from "$lib/currency";
   import ExpenseList from "./ExpenseList.svelte";
   import Keypad from "./Keypad.svelte";
   import type { Id } from "../../convex/_generated/dataModel";
   import { browser } from "$app/environment";
+  import { onMount } from "svelte";
 
   interface Props {
     date: string; // YYYY-MM-DD
@@ -13,18 +12,41 @@
 
   let { date } = $props();
 
-  const client = useConvexClient();
-  
-  // Only run query in browser (not during prerender)
-  const expensesQuery = browser ? useQuery(api.expenses.list, () => ({ date })) : null;
-  
-  let expenses = $derived(expensesQuery?.data || []);
-  let totalJpy = $derived(expenses.reduce((sum, e) => sum + e.amount, 0));
-  let totalAud = $derived(convertToHomeCurrency(totalJpy, date));
+  // Convex API types (used dynamically)
+  let api: any;
+  let client: any;
+  let expensesQuery: any;
+  let expenses: any[] = $state([]);
+  let totalJpy = $state(0);
+  let totalAud = $state(0);
   
   // Exchange rate display
   let rateDisplay = $state("Loading...");
   let exchangeRate = $state(97.5);
+
+  onMount(async () => {
+    if (browser) {
+      try {
+        const convex = await import("convex-svelte");
+        const convexApi = await import("../../convex/_generated/api");
+        api = convexApi.api;
+        client = convex.useConvexClient();
+        expensesQuery = convex.useQuery(api.expenses.list, () => ({ date }));
+        expensesQuery.subscribe((data: any[]) => {
+          expenses = data || [];
+          totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
+        });
+      } catch (e) {
+        console.warn("Convex not available:", e);
+      }
+    }
+  });
+
+  $effect(() => {
+    if (browser && expenses.length >= 0) {
+      convertToHomeCurrency(totalJpy, date).then(aud => totalAud = aud);
+    }
+  });
 
   async function loadRateInfo() {
     try {
@@ -40,16 +62,18 @@
   let showKeypad = $state(false);
 
   async function handleAdd(amount: number, description: string, category: string) {
-    await client.mutation(api.expenses.add, {
-      amount,
-      description,
-      category: category as any,
-      date,
-    });
+    if (client) {
+      await client.mutation(api.expenses.add, {
+        amount,
+        description,
+        category: category as any,
+        date,
+      });
+    }
   }
 
   async function handleDelete(id: Id<"expenses">) {
-    if (confirm("Are you sure you want to delete this expense?")) {
+    if (confirm("Are you sure you want to delete this expense?") && client) {
       await client.mutation(api.expenses.remove, { id });
     }
   }

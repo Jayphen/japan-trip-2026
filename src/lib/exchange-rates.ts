@@ -4,13 +4,6 @@
  * Uses exchangerate-api.com free tier
  */
 
-import fs from 'fs';
-import path from 'path';
-
-// Cache file location
-const CACHE_DIR = path.join(process.cwd(), '.cache');
-const RATES_FILE = path.join(CACHE_DIR, 'exchange-rates.json');
-
 // Free API - exchangerate-api.com (no key required for basic rates)
 const AUD_TO_JPY_API = 'https://api.exchangerate-api.com/v4/latest/AUD';
 
@@ -21,44 +14,23 @@ export interface ExchangeRate {
   source: string;
 }
 
-// In-memory cache
+// In-memory cache (only cache we have in Cloudflare Workers)
 let rateCache: Map<string, ExchangeRate> = new Map();
 
 /**
- * Ensure cache directory exists
- */
-function ensureCacheDir() {
-  if (!fs.existsSync(CACHE_DIR)) {
-    fs.mkdirSync(CACHE_DIR, { recursive: true });
-  }
-}
-
-/**
- * Load cached rates from disk
+ * Load cached rates from disk (no-op in Cloudflare)
  */
 function loadCache(): void {
-  try {
-    if (fs.existsSync(RATES_FILE)) {
-      const data = JSON.parse(fs.readFileSync(RATES_FILE, 'utf-8'));
-      for (const [date, rate] of Object.entries(data)) {
-        rateCache.set(date, rate as ExchangeRate);
-      }
-    }
-  } catch (e) {
-    console.warn('Failed to load exchange rate cache:', e);
-  }
+  // File system not available in Cloudflare Workers
+  // Cache will be in-memory only
 }
 
 /**
- * Save cache to disk
+ * Save cache to disk (no-op in Cloudflare)
  */
 function saveCache(): void {
-  ensureCacheDir();
-  const data: Record<string, ExchangeRate> = {};
-  for (const [date, rate] of rateCache) {
-    data[date] = rate;
-  }
-  fs.writeFileSync(RATES_FILE, JSON.stringify(data, null, 2));
+  // File system not available in Cloudflare Workers
+  // Cache will be in-memory only
 }
 
 /**

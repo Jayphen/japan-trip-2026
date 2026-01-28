@@ -1,27 +1,32 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { useQuery } from "convex-svelte";
-  import { api } from "../../convex/_generated/api";
   import { formatCurrency, convertToHomeCurrency, CATEGORIES } from "$lib/currency";
-  import { Chart, registerables } from 'chart.js';
   import CategoryIcon from "$lib/spending/CategoryIcon.svelte";
   import { browser } from "$app/environment";
 
-  Chart.register(...registerables);
-
-  let expenses: any[] = [];
-  let totalJpy = 0;
-  let totalAud = 0;
-  let loading = true;
+  let expenses: any[] = $state([]);
+  let totalJpy = $state(0);
+  let totalAud = $state(0);
+  let loading = $state(true);
   let chartCanvas: HTMLCanvasElement;
-  let chart: Chart;
+  let chart: any;
 
-  // Only run in browser
-  if (browser) {
-    onMount(async () => {
+  // Convex API (loaded dynamically)
+  let api: any;
+  let q: any;
+
+  onMount(async () => {
+    if (browser) {
       try {
-        const q = useQuery(api.expenses.list, {});
-        const unsub = q.subscribe((data) => {
+        const Chart = (await import('chart.js')).default;
+        Chart.register(...registerables);
+        
+        const convex = await import("convex-svelte");
+        const convexApi = await import("../../convex/_generated/api");
+        api = convexApi.api;
+        
+        q = convex.useQuery(api.expenses.list, {});
+        q.subscribe((data: any[]) => {
           expenses = data || [];
           totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
           convertToHomeCurrency(totalJpy).then(aud => totalAud = aud);
@@ -32,13 +37,14 @@
         console.warn("Failed to load expenses:", e);
         loading = false;
       }
-    });
-  } else {
-    loading = false;
-  }
+    } else {
+      loading = false;
+    }
+  });
   
   function updateChart() {
-    // ... chart code
+    if (!chartCanvas || !expenses.length) return;
+    // Chart update code...
   }
 </script>
 
