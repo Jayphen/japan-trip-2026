@@ -1,17 +1,9 @@
 <script lang="ts">
-<<<<<<< HEAD
-  import { isBeforeTrip, getDaysUntilTrip, getDayPlan } from "$lib/itinerary";
-  import PrepMode from "$lib/PrepMode.svelte";
-  import TravelMode from "$lib/TravelMode.svelte";
-  import { browser } from "$app/environment";
-  import { onMount } from "svelte";
-=======
 	import { useQuery, useConvexClient } from "convex-svelte";
 	import { api } from "../../convex/_generated/api";
 	import { isBeforeTrip, getDaysUntilTrip, getDayPlan } from "$lib/itinerary";
 	import PrepMode from "$lib/PrepMode.svelte";
 	import TravelMode from "$lib/TravelMode.svelte";
->>>>>>> e78071a (Fix critical deployment issues: CSS and Convex integration)
 
   let debugDate = $state(new Date());
   let currentDate = $derived(debugDate);
@@ -19,30 +11,8 @@
   let daysUntil = $derived(getDaysUntilTrip(currentDate));
   let dayPlan = $derived(getDayPlan(currentDate));
 
-<<<<<<< HEAD
-  // Skip Convex during SSR/preview
-  let tasks: any[] = $state([]);
-  let client: any;
-  let api: any;
-  
-  onMount(async () => {
-    if (browser) {
-      try {
-        const convex = await import("convex-svelte");
-        const convexApi = await import("../convex/_generated/api");
-        api = convexApi.api;
-        client = convex.useConvexClient();
-        const q = convex.useQuery(api.tasks.list, {});
-        q.subscribe((data: any[]) => { tasks = data || []; });
-      } catch (e) {
-        // Convex not available
-      }
-    }
-  });
-=======
 	const tasks = useQuery(api.tasks.list, {});
 	const client = useConvexClient();
->>>>>>> e78071a (Fix critical deployment issues: CSS and Convex integration)
 
   function formatDateForInput(date: Date): string {
     const year = date.getFullYear();
@@ -56,19 +26,6 @@
     debugDate = new Date(target.value + "T00:00:00");
   }
 
-<<<<<<< HEAD
-  async function handleToggle(taskId: string) {
-    if (client) {
-      await client.mutation(api.tasks.toggle, { id: taskId as any });
-    }
-  }
-
-  async function handleSeed() {
-    if (client) {
-      await client.mutation(api.tasks.seed, {});
-    }
-  }
-=======
 	async function handleToggle(taskId: string) {
 		await client.mutation(api.tasks.toggle, { id: taskId as any });
 	}
@@ -76,7 +33,6 @@
 	async function handleSeed() {
 		await client.mutation(api.tasks.seed, {});
 	}
->>>>>>> e78071a (Fix critical deployment issues: CSS and Convex integration)
 </script>
 
 <div
@@ -147,7 +103,7 @@
     {#if showPrepMode}
       <PrepMode
         {daysUntil}
-        tasks={tasks.data}
+        tasks={tasks}
         {handleToggle}
         {handleSeed}
         {currentDate}

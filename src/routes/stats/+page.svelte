@@ -8,38 +8,45 @@
   let totalJpy = $state(0);
   let totalAud = $state(0);
   let loading = $state(true);
-  let chartCanvas: HTMLCanvasElement;
+  let chartCanvas: HTMLCanvasElement | undefined = $state();
   let chart: any;
 
   // Convex API (loaded dynamically)
   let api: any;
-  let q: any;
+  let unsubscribe: (() => void) | undefined;
 
-  onMount(async () => {
-    if (browser) {
-      try {
-        const Chart = (await import('chart.js')).default;
-        Chart.register(...registerables);
-        
-        const convex = await import("convex-svelte");
-        const convexApi = await import("../../convex/_generated/api");
-        api = convexApi.api;
-        
-        q = convex.useQuery(api.expenses.list, {});
-        q.subscribe((data: any[]) => {
-          expenses = data || [];
-          totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
-          convertToHomeCurrency(totalJpy).then(aud => totalAud = aud);
-          updateChart();
+  onMount(() => {
+    let unsubscribe: (() => void) | undefined;
+    (async () => {
+      if (browser) {
+        try {
+          const { Chart, registerables } = await import('chart.js');
+          Chart.register(...registerables);
+          
+          const convex = await import("convex-svelte");
+          const convexApi = await import("../../convex/_generated/api");
+          api = convexApi.api;
+          const client = convex.useConvexClient();
+          
+          unsubscribe = client.onUpdate(api.expenses.list, {}, (data: any[]) => {
+            expenses = data || [];
+            totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
+            convertToHomeCurrency(totalJpy).then(aud => totalAud = aud);
+            updateChart();
+            loading = false;
+          });
+        } catch (e) {
+          console.warn("Failed to load expenses:", e);
           loading = false;
-        });
-      } catch (e) {
-        console.warn("Failed to load expenses:", e);
+        }
+      } else {
         loading = false;
       }
-    } else {
-      loading = false;
-    }
+    })();
+    
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   });
   
   function updateChart() {

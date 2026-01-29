@@ -12,6 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@cloudflare/kv-asset-handler": "^0.4.2",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/kit": "^2.49.1",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
@@ -23,19 +24,15 @@
 		"svelte-check": "^4.3.4",
 		"tailwindcss": "^3.4.19",
 		"typescript": "^5.9.3",
-		"vite": "^7.2.6"
+		"vite": "^7.2.6",
+		"wrangler": "^4.61.0"
 	},
 	"dependencies": {
-<<<<<<< HEAD
 		"@sveltejs/adapter-cloudflare": "^7.2.4",
 		"@tailwindcss/postcss": "^4.1.18",
 		"chart.js": "^4.5.1",
 		"convex": "^1.31.3",
 		"convex-svelte": "^0.0.12",
 		"leaflet": "^1.9.4"
-=======
-		"convex": "^1.31.3",
-		"convex-svelte": "^0.0.12"
->>>>>>> e78071a (Fix critical deployment issues: CSS and Convex integration)
 	}
 }
