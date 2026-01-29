@@ -23,7 +23,7 @@
 
   // Pre-compute AUD amounts
   let expensesWithAud = $derived(
-    Promise.all(expenses.map(async (e) => ({
+    Promise.all(expenses.map(async (e: Expense) => ({
       ...e,
       audAmount: await convertToHomeCurrency(e.amount, e.date)
     })))

@@ -15,31 +15,38 @@
   // Convex API types (used dynamically)
   let api: any;
   let client: any;
-  let expensesQuery: any;
   let expenses: any[] = $state([]);
   let totalJpy = $state(0);
   let totalAud = $state(0);
+  let unsubscribe: (() => void) | undefined;
   
   // Exchange rate display
   let rateDisplay = $state("Loading...");
   let exchangeRate = $state(97.5);
 
-  onMount(async () => {
-    if (browser) {
-      try {
-        const convex = await import("convex-svelte");
-        const convexApi = await import("../../convex/_generated/api");
-        api = convexApi.api;
-        client = convex.useConvexClient();
-        expensesQuery = convex.useQuery(api.expenses.list, () => ({ date }));
-        expensesQuery.subscribe((data: any[]) => {
-          expenses = data || [];
-          totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
-        });
-      } catch (e) {
-        console.warn("Convex not available:", e);
+  onMount(() => {
+    let unsubscribe: (() => void) | undefined;
+    (async () => {
+      if (browser) {
+        try {
+          const convex = await import("convex-svelte");
+          const convexApi = await import("../../convex/_generated/api");
+          api = convexApi.api;
+          client = convex.useConvexClient();
+          
+          unsubscribe = client.onUpdate(api.expenses.list, { date }, (data: any[]) => {
+            expenses = data || [];
+            totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
+          });
+        } catch (e) {
+          console.warn("Convex not available:", e);
+        }
       }
-    }
+    })();
+    
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   });
 
   $effect(() => {

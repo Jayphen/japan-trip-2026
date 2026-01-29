@@ -6,17 +6,21 @@
   interface Props {
     onClose: () => void;
     onSave: (amount: number, description: string, category: string) => void;
-    initialDate: string; // Just for context if needed
+    initialDate?: string; // Just for context if needed
   }
 
-  let { onClose, onSave } = $props();
+  let { onClose, onSave, initialDate } = $props();
 
   let amountStr = $state("0");
   let description = $state("");
   let selectedCategory = $state("FOOD");
 
   let amount = $derived(parseInt(amountStr.replace(/^0+/, "") || "0"));
-  let converted = $derived(convertToHomeCurrency(amount));
+  let converted = $state(0);
+  
+  $effect(() => {
+    convertToHomeCurrency(amount).then(v => converted = v);
+  });
 
   function handleDigit(digit: string) {
     if (amountStr.length >= 7) return; // Limit length
@@ -45,8 +49,10 @@
   <div 
     class="absolute inset-0 bg-black/60 backdrop-blur-sm" 
     onclick={onClose}
+    onkeydown={(e) => e.key === 'Escape' && onClose()}
     role="button"
-    tabindex="-1"
+    tabindex="0"
+    aria-label="Close"
   ></div>
 
   <!-- Modal -->
@@ -57,7 +63,7 @@
     <!-- Header -->
     <div class="p-4 bg-rose-50 border-b border-rose-100 flex justify-between items-center">
       <h3 class="font-bold text-rose-900 text-lg">Add Expense</h3>
-      <button onclick={onClose} class="p-2 text-rose-400 hover:text-rose-700 rounded-full hover:bg-rose-100">
+      <button onclick={onClose} class="p-2 text-rose-400 hover:text-rose-700 rounded-full hover:bg-rose-100" aria-label="Close">
         <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -128,6 +134,7 @@
       <button
         class="h-16 bg-white rounded-lg shadow-sm flex items-center justify-center text-gray-700 hover:bg-gray-50 active:scale-95 transition-all"
         onclick={handleBackspace}
+        aria-label="Backspace"
       >
         <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z" />
