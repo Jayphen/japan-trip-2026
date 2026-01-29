@@ -10,6 +10,7 @@
 	}
 
 	let { dayPlan, currentDate }: Props = $props();
+<<<<<<< HEAD
 	let viewDateOffset = $state(0);
 	let imageError = $state(false);
 	let activeTab = $state<"itinerary" | "spending">("itinerary");
@@ -32,6 +33,14 @@
 	$effect(() => {
 		currentDayPlan;
 		imageError = false;
+	});
+=======
+	let viewDate = $state.raw<Date>(new Date());
+	let currentDayPlan = $derived(getDayPlan(viewDate) || dayPlan);
+>>>>>>> e78071a (Fix critical deployment issues: CSS and Convex integration)
+
+	$effect(() => {
+		viewDate = new Date(currentDate.getTime());
 	});
 
 	function navigateDay(direction: number) {
