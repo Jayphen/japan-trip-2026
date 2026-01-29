@@ -10,7 +10,6 @@ const config = {
 		// Using the default SvelteKit appDir of "_app" can lead to assets not being served.
 		// Rename it to avoid collisions.
 		appDir: 'app',
-		base: '/',
 		adapter: adapter({
 			runtime: 'edge'
 		})
