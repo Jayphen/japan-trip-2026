@@ -3,11 +3,5 @@ compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 main = ".svelte-kit/cloudflare/_worker.js"
 
-[site]
-bucket = ".svelte-kit/cloudflare"
-
 [vars]
 PUBLIC_CONVEX_URL = "https://rare-moose-955.convex.cloud"
-
-
-
