@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { browser } from "$app/environment";
+	import { onMount } from "svelte";
 	import { isBeforeTrip, getDaysUntilTrip, getDayPlan } from "$lib/itinerary";
 	import PrepMode from "$lib/PrepMode.svelte";
 	import TravelMode from "$lib/TravelMode.svelte";
-	import { useQuery, useConvexClient } from "convex-svelte";
+	import { useConvexClient } from "convex-svelte";
 	import { api } from "../../convex/_generated/api";
 
   let debugDate = $state(new Date());
@@ -13,25 +14,24 @@
   let dayPlan = $derived(getDayPlan(currentDate));
 
 	// Only initialize Convex on the client
-	let tasks: any = $state([]);
+	let tasks: any[] = $state([]);
 	let client: any = $state(null);
 
-	$effect(() => {
+	onMount(() => {
+		let unsubscribe: (() => void) | undefined;
 		if (browser) {
 			try {
 				client = useConvexClient();
-				const q = useQuery(api.tasks.list, {});
-				// Subscribe to the query
-				if (q && typeof q.subscribe === 'function') {
-					const unsubscribe = q.subscribe((data: any[]) => {
-						tasks = data || [];
-					});
-					return unsubscribe;
-				}
+				unsubscribe = client.onUpdate(api.tasks.list, {}, (data: any[]) => {
+					tasks = data || [];
+				});
 			} catch (e) {
 				console.warn('Convex not available:', e);
 			}
 		}
+		return () => {
+			if (unsubscribe) unsubscribe();
+		};
 	});
 
   function formatDateForInput(date: Date): string {
