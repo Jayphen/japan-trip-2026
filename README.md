@@ -21,8 +21,9 @@ A personal travel companion app for the Japan 2026 trip (Jan 29 - Feb 17, 2026).
 
 ## Tech Stack
 
-- **Frontend**: SvelteKit (Vite) + Tailwind CSS
-- **Backend/Database**: Convex
+- **Frontend**: SvelteKit 5 + Tailwind CSS
+- **Backend/Database**: Convex (real-time sync)
+- **Hosting**: Cloudflare Pages
 - **TypeScript**: Full type safety
 
 ## Setup Instructions
@@ -110,14 +111,29 @@ npm run preview
 
 ## Deployment
 
-1. Deploy Convex to production:
-   ```sh
-   npx convex deploy
-   ```
+The app auto-deploys to **Cloudflare Pages** on every push to `main`.
 
-2. Update your production environment variables with the production Convex URL
+**Live site**: https://japan.jayphen.com/
 
-3. Deploy the SvelteKit app to your preferred hosting provider (Vercel, Netlify, etc.)
+### How it works
+
+1. Push to `main` triggers Cloudflare Pages build
+2. Cloudflare runs `npm run build` which uses `@sveltejs/adapter-cloudflare`
+3. Build output in `.svelte-kit/cloudflare` is deployed automatically
+
+### Manual deployment (if needed)
+
+```sh
+npm run build
+npx wrangler pages deploy .svelte-kit/cloudflare --project-name japan-trip-2026
+```
+
+### Convex
+
+Convex is deployed separately and connects via `PUBLIC_CONVEX_URL`:
+```sh
+npx convex deploy
+```
 
 ## License
 
