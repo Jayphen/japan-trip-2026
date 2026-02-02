@@ -11,6 +11,13 @@ export const list = query({
   },
 });
 
+export const all = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("expenses").collect();
+  },
+});
+
 export const add = mutation({
   args: {
     amount: v.number(),
