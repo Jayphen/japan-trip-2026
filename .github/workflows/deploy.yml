@@ -22,8 +22,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          rm package-lock.json
-          npm install
+          rm -f package-lock.json
+          npm install --force
 
       - name: Build
         run: npm run build
