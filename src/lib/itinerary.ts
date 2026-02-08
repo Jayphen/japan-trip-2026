@@ -555,7 +555,7 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 18,
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
-    mainActivity: "Valentine's Day Eve",
+    mainActivity: "Tokyo Flex Day",
     region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower at night",
@@ -564,12 +564,12 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Free Day in Tokyo",
         description: "Explore Tokyo at your own pace",
-        tip: "Return to favorite spots or discover something new"
+        tip: "Good day for shopping, cafes, or revisiting a favorite neighborhood"
       },
       {
-        name: "Valentine's Eve Dinner",
-        description: "Make restaurant reservations for tomorrow's special dinner",
-        tip: "Ginza and Shiodome have excellent romantic dining options"
+        name: "Nice Dinner",
+        description: "Pick a great dinner spot near Shiodome/Shinbashi/Ginza",
+        tip: "If you want something special, book ahead (popular places fill up quickly)"
       }
     ]
   },
