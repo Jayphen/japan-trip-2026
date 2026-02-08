@@ -370,8 +370,7 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Gion District",
         description: "Historic geisha district with traditional wooden machiya houses",
-        tip: "Look for ochaya (teahouses) with warmth and ambiance",
-        tip: "Best chance to spot geiko and maiko in the early evening",
+        tip: "Warm up in a tea house (ochaya). Best chance to spot geiko and maiko is early evening.",
         coordinates: { lat: 35.0035, lng: 135.7751 }
       },
       {
