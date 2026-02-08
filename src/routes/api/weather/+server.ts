@@ -38,7 +38,20 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
   });
 
   if (!res.ok) {
-    return json({ error: `Open-Meteo error: ${res.status}` }, { status: 502 });
+    // Don't hard-fail the UI with a 5xx; upstream can rate-limit.
+    return json(
+      {
+        date,
+        error: `Open-Meteo error: ${res.status}`,
+        upstreamStatus: res.status
+      },
+      {
+        status: 200,
+        headers: {
+          'cache-control': 'public, max-age=120'
+        }
+      }
+    );
   }
 
   const data = await res.json();

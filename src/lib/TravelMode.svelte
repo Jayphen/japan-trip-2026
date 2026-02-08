@@ -54,7 +54,12 @@
 					weatherError = `Weather unavailable (${res.status})`;
 					return;
 				}
-				weather = (await res.json()) as WeatherSummary;
+				const w = (await res.json()) as any;
+				if (w?.error) {
+					weatherError = w.error;
+					return;
+				}
+				weather = w as WeatherSummary;
 			} catch {
 				weatherError = 'Weather unavailable';
 			}

@@ -68,22 +68,34 @@
     if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
 
     // Fetch forecast for each day (best-effort). Open-Meteo supports ~16 days.
-    for (const d of days) {
-      (async () => {
+    // To avoid upstream rate-limits, only fetch for dates within the next 16 days
+    // and do it sequentially with a small delay.
+    (async () => {
+      const today = parseDate(todayStr);
+
+      for (const d of days) {
+        const diffDays = Math.round((d.date.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+        if (diffDays < -1 || diffDays > 16) continue;
+
         try {
           const lat = d.plan.coordinates?.lat;
           const lng = d.plan.coordinates?.lng;
-          if (lat == null || lng == null) return;
+          if (lat == null || lng == null) continue;
 
           const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}&date=${d.dateStr}`);
-          if (!res.ok) return;
-          const w = (await res.json()) as WeatherSummary;
-          weatherByDate = { ...weatherByDate, [d.dateStr]: w };
+          if (!res.ok) continue;
+          const w: any = await res.json();
+          if (w?.error) continue;
+
+          weatherByDate = { ...weatherByDate, [d.dateStr]: w as WeatherSummary };
+
+          // small delay to be kind to upstream
+          await new Promise((r) => setTimeout(r, 150));
         } catch {
           // ignore
         }
-      })();
-    }
+      }
+    })();
   });
 </script>
 
