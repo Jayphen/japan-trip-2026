@@ -479,14 +479,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-13": {
     date: "2026-02-13",
     dayNumber: 16,
-    hotel: "Royal Park Canvas Ginza",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Royal+Park+Canvas+Ginza+Tokyo",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Return to Tokyo via Shinkansen",
-    trainInfo: "Shinkansen Kyoto → Tokyo",
-    region: "Tokyo - Ginza",
-    heroImage: "https://images.pexels.com/photos/31402541/pexels-photo-31402541.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    heroImageAlt: "Ginza district illuminated at night",
-    coordinates: { lat: 35.6717, lng: 139.7650 },
+    trainInfo: "NOZOMI 232 Kyoto → Tokyo (12:30-14:45), Car 3, Seats 13-D, 13-E",
+    region: "Tokyo - Shiodome",
+    heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    heroImageAlt: "Tokyo Tower illuminated at night in Minato City",
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Shinkansen to Tokyo",
@@ -495,28 +495,28 @@ export const itinerary: Record<string, DayPlan> = {
         coordinates: { lat: 35.0116, lng: 135.7681 }
       },
       {
-        name: "Check into Ginza",
-        description: "Royal Park Canvas Ginza Corridor - your luggage will be waiting!",
-        coordinates: { lat: 35.6708, lng: 139.7600 },
-        tip: "The hotel has a cool lounge/terrace space perfect for chilling with a drink"
+        name: "Check into Shiodome",
+        description: "Back to familiar Mitsui Garden Hotel Shiodome Italia-gai",
+        coordinates: { lat: 35.6614, lng: 139.7570 },
+        tip: "Use the TaxisGo app if luggage is heavy"
       },
       {
-        name: "Evening in Ginza",
-        description: "Explore Tokyo's upscale shopping and dining district",
-        tip: "Visit the Ginza Six rooftop garden for a free, beautiful view of the city skyline"
+        name: "Evening Exploration",
+        description: "Visit Tokyo Tower or Zojoji Temple nearby",
+        coordinates: { lat: 35.6586, lng: 139.7454 }
       }
     ]
   },
   "2026-02-14": {
     date: "2026-02-14",
     dayNumber: 17,
-    hotel: "Royal Park Canvas Ginza",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Royal+Park+Canvas+Ginza+Tokyo",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Valentine's Day - teamLab Planets",
-    region: "Tokyo - Ginza",
-    heroImage: "https://images.pexels.com/photos/31402541/pexels-photo-31402541.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    heroImageAlt: "Ginza district illuminated at night",
-    coordinates: { lat: 35.6717, lng: 139.7650 },
+    region: "Tokyo - Shiodome",
+    heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    heroImageAlt: "Tokyo Tower illuminated at night",
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "teamLab Planets",
@@ -540,47 +540,41 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-15": {
     date: "2026-02-15",
     dayNumber: 18,
-    hotel: "Super Hotel Premier Akasaka",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Super+Hotel+Premier+Akasaka",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Relax in Onsen",
-    region: "Tokyo - Akasaka",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower at night",
-    coordinates: { lat: 35.6744, lng: 139.7370 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
-      {
-        name: "Move to Akasaka",
-        description: "Check into Super Hotel Premier Akasaka",
-        coordinates: { lat: 35.6738, lng: 139.7360 },
-        tip: "Akasaka Sacas and Biz Tower offer sleek modern dining options right nearby"
-      },
       {
         name: "Hotel Onsen",
         description: "Relax in the hotel's natural hot spring bath after weeks of travel",
-        tip: "Super Hotel Premier has a great rooftop onsen!"
+        tip: "Mitsui Garden Shiodome has a great onsen!"
       },
       {
         name: "Slow Day",
         description: "Rest and recharge - do some last-minute shopping if desired",
-        tip: "Hie Shrine in Akasaka has a beautiful tunnel of red torii gates (like Fushimi Inari but smaller)"
+        tip: "Explore the Shiodome area or visit nearby Hie Shrine in Akasaka"
       }
     ]
   },
   "2026-02-16": {
     date: "2026-02-16",
     dayNumber: 19,
-    hotel: "Super Hotel Premier Akasaka",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Super+Hotel+Premier+Akasaka",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Shibuya Sky at Sunset",
     logistics: "Shibuya Sky tickets booked for sunset time",
-    region: "Tokyo - Shibuya",
+    region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/8002454/pexels-photo-8002454.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Shibuya Crossing from above",
     coordinates: { lat: 35.6595, lng: 139.7004 },
     activities: [
       {
         name: "Free Morning",
-        description: "Sleep in or explore Akasaka area"
+        description: "Sleep in or explore Shiodome area"
       },
       {
         name: "Shibuya Exploration",
@@ -605,14 +599,14 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-17": {
     date: "2026-02-17",
     dayNumber: 20,
-    hotel: "Super Hotel Premier Akasaka",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Super+Hotel+Premier+Akasaka",
+    hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Departure Day",
     logistics: "Flight departs 22:45",
     region: "Tokyo - Departure",
     heroImage: "https://images.pexels.com/photos/19162388/pexels-photo-19162388.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Station Marunouchi Building",
-    coordinates: { lat: 35.6744, lng: 139.7370 },
+    coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
         name: "Morning Relax",
@@ -627,7 +621,7 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Taxi to Tokyo Station",
         time: "Evening",
-        description: "Take taxi from Akasaka to Tokyo Station",
+        description: "Take taxi from Shiodome to Tokyo Station",
         tip: "Have your hotel call a taxi for you in advance"
       },
       {
