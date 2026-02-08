@@ -512,23 +512,23 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 17,
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
-    mainActivity: "Valentine's Day - teamLab Planets",
+    mainActivity: "Valentine's Day",
     region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower illuminated at night",
     coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
-        name: "teamLab Planets",
-        time: "10:00 AM",
-        description: "Immersive digital art museum - walk through water and infinity mirror rooms",
-        tip: "Wear shorts or clothes you can roll up - you'll wade through knee-deep water!",
-        coordinates: { lat: 35.6498, lng: 139.7905 }
+        name: "Shibuya Sky",
+        time: "Sunset",
+        description: "360-degree views from 229m high observation deck - perfect for Valentine's!",
+        tip: "Book the sunset time slot for the best experience - day AND night views!",
+        coordinates: { lat: 35.6584, lng: 139.7022 }
       },
       {
         name: "Valentine's Day Lunch",
-        description: "Romantic lunch in the Toyosu or Ginza area",
-        tip: "Tsukiji Outer Market is walkable from teamLab - get the freshest sushi of your life"
+        description: "Romantic lunch in the Shibuya or Ginza area",
+        tip: "Many restaurants have special Valentine's menus"
       },
       {
         name: "Fancy Dinner",
@@ -542,21 +542,21 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 18,
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
-    mainActivity: "Relax in Onsen",
+    mainActivity: "Valentine's Day Eve",
     region: "Tokyo - Shiodome",
     heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Tower at night",
     coordinates: { lat: 35.6614, lng: 139.7617 },
     activities: [
       {
-        name: "Hotel Onsen",
-        description: "Relax in the hotel's natural hot spring bath after weeks of travel",
-        tip: "Mitsui Garden Shiodome has a great onsen!"
+        name: "Free Day in Tokyo",
+        description: "Explore Tokyo at your own pace",
+        tip: "Return to favorite spots or discover something new"
       },
       {
-        name: "Slow Day",
-        description: "Rest and recharge - do some last-minute shopping if desired",
-        tip: "Explore the Shiodome area or visit nearby Hie Shrine in Akasaka"
+        name: "Valentine's Eve Dinner",
+        description: "Make restaurant reservations for tomorrow's special dinner",
+        tip: "Ginza and Shiodome have excellent romantic dining options"
       }
     ]
   },
@@ -565,9 +565,8 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 19,
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
-    mainActivity: "Shibuya Sky at Sunset",
-    logistics: "Shibuya Sky tickets booked for sunset time",
-    region: "Tokyo - Shiodome",
+    mainActivity: "Shibuya Exploration",
+    region: "Tokyo - Shibuya",
     heroImage: "https://images.pexels.com/photos/8002454/pexels-photo-8002454.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Shibuya Crossing from above",
     coordinates: { lat: 35.6595, lng: 139.7004 },
@@ -581,13 +580,6 @@ export const itinerary: Record<string, DayPlan> = {
         description: "Visit Shibuya Crossing, Hachiko statue, and explore the vibrant district",
         coordinates: { lat: 35.6595, lng: 139.7004 },
         tip: "Check out Miyashita Park - a cool rooftop park with shopping and food below"
-      },
-      {
-        name: "Shibuya Sky",
-        time: "Sunset",
-        description: "360-degree views from 229m high observation deck",
-        tip: "Book the sunset time slot for the best experience - day AND night views!",
-        coordinates: { lat: 35.6584, lng: 139.7022 }
       },
       {
         name: "Last Night in Tokyo",
