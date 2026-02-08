@@ -464,8 +464,7 @@ export const itinerary: Record<string, DayPlan> = {
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
     mainActivity: "Extra Night in Kyoto",
-    logistics: "Ship luggage to Royal Park Canvas Ginza in morning",
-    trainInfo: "Shinkansen Kyoto → Tokyo",
+    logistics: "Ship luggage to Mitsui Garden Hotel Shiodome Italia-gai in morning",
     region: "Kyoto",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
@@ -474,7 +473,7 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Ship Luggage to Tokyo",
         time: "Morning",
-        description: "Send luggage via Takkyubin to Royal Park Canvas Ginza",
+        description: "Send luggage via Takkyubin to Mitsui Garden Hotel Shiodome Italia-gai",
         tip: "Travel light for tomorrow's train ride!"
       },
       {
@@ -615,7 +614,7 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Morning Relax",
-        description: "Last morning in Japan - enjoy hotel breakfast and onsen one more time",
+        description: "Last morning in Japan - enjoy hotel breakfast and a slow start",
         tip: "Grab a coffee at a local kissaten (traditional coffee shop) for a retro vibe"
       },
       {
