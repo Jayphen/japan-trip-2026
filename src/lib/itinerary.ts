@@ -448,49 +448,31 @@ export const itinerary: Record<string, DayPlan> = {
   "2026-02-12": {
     date: "2026-02-12",
     dayNumber: 15,
-    hotel: "The Knot Hiroshima",
-    hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Knot+Hiroshima",
-    mainActivity: "Miyajima Island",
+    hotel: "The Gate Hotel Takasegawa",
+    hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
+    mainActivity: "Extra Night in Kyoto",
     logistics: "Ship luggage to Royal Park Canvas Ginza in morning",
-    trainInfo: "Shinkansen Kyoto → Hiroshima",
-    region: "Hiroshima",
-    heroImage: "https://images.pexels.com/photos/31315377/pexels-photo-31315377.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    heroImageAlt: "Floating torii gate of Itsukushima Shrine at Miyajima",
-    coordinates: { lat: 34.3853, lng: 132.4553 },
+    trainInfo: "Shinkansen Kyoto → Tokyo",
+    region: "Kyoto",
+    heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    heroImageAlt: "Pontocho Alley at night in Kyoto",
+    coordinates: { lat: 35.0116, lng: 135.7681 },
     activities: [
       {
         name: "Ship Luggage to Tokyo",
         time: "Morning",
         description: "Send luggage via Takkyubin to Royal Park Canvas Ginza",
-        tip: "Travel light to Hiroshima - luggage arrives in Tokyo before you do!"
+        tip: "Travel light for tomorrow's train ride!"
       },
       {
-        name: "Shinkansen to Hiroshima",
-        description: "High-speed train from Kyoto to Hiroshima",
-        coordinates: { lat: 34.9858, lng: 135.7588 }
+        name: "Extra Day in Kyoto",
+        description: "Revisit favorite spots or explore new areas in Kyoto",
+        tip: "Use this day to revisit temples or neighborhoods you loved"
       },
       {
-        name: "Miyajima Island",
-        description: "Ferry to the sacred island to see the iconic floating torii gate",
-        tip: "Check tide times - the torii is stunning at both high and low tide",
-        coordinates: { lat: 34.2961, lng: 132.3198 }
-      },
-      {
-        name: "Fresh Oysters",
-        description: "Hiroshima is famous for oysters - try them grilled, fried, or raw!",
-        tip: "Miyajima has great oyster restaurants near the ferry terminal"
-      },
-      {
-        name: "Itsukushima Shrine",
-        description: "UNESCO World Heritage shrine that appears to float at high tide",
-        coordinates: { lat: 34.2959, lng: 132.3198 },
-        tip: "Walk out to the torii gate at low tide for a unique perspective and photo op"
-      },
-      {
-        name: "Dinner at Okonomimura",
-        description: "Visit the famous 'Okonomiyaki Village' - a building full of Hiroshima-style okonomiyaki stalls",
-        tip: "Choose a stall with a lively atmosphere and watch them cook in front of you",
-        coordinates: { lat: 34.3914, lng: 132.4616 }
+        name: "Last Night in Kyoto",
+        description: "Evening stroll along Takasegawa canal at The Gate Hotel",
+        tip: "Enjoy the hotel's rooftop bar with canal views"
       }
     ]
   },
@@ -499,23 +481,18 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 16,
     hotel: "Royal Park Canvas Ginza",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Royal+Park+Canvas+Ginza+Tokyo",
-    mainActivity: "Return to Tokyo",
-    trainInfo: "Shinkansen Hiroshima → Tokyo",
+    mainActivity: "Return to Tokyo via Shinkansen",
+    trainInfo: "Shinkansen Kyoto → Tokyo",
     region: "Tokyo - Ginza",
     heroImage: "https://images.pexels.com/photos/31402541/pexels-photo-31402541.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Ginza district illuminated at night",
     coordinates: { lat: 35.6717, lng: 139.7650 },
     activities: [
       {
-        name: "Morning in Hiroshima",
-        description: "Optional: Visit Peace Memorial Park and Museum before departing",
-        tip: "Very moving experience - allow 2-3 hours",
-        coordinates: { lat: 34.3930, lng: 132.4530 }
-      },
-      {
         name: "Shinkansen to Tokyo",
-        description: "Return journey to Tokyo - about 4 hours",
-        coordinates: { lat: 34.3977, lng: 132.4753 }
+        description: "Bullet train from Kyoto to Tokyo - about 2 hours 15 minutes",
+        tip: "Sit on the right side for Mt. Fuji views on a clear day!",
+        coordinates: { lat: 35.0116, lng: 135.7681 }
       },
       {
         name: "Check into Ginza",
