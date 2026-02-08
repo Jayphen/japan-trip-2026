@@ -320,20 +320,20 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Shinkansen to Kyoto",
-        description: "Bullet train from Atami to Kyoto - sit on the right side for Mt. Fuji views",
-        tip: "Seat E is on the Mt. Fuji side!",
+        description: "Bullet train from Atami to Kyoto - sit on the right side for Mt. Fuji views (if skies are clear)",
+        tip: "Bundle up! It's cold in Kyoto right now",
         coordinates: { lat: 35.1036, lng: 139.0778 }
       },
       {
         name: "Check into The Gate Hotel",
         description: "Beautiful hotel along Takasegawa canal - breakfast included",
-        tip: "The rooftop has amazing views of Kyoto",
+        tip: "Perfect weather for the hotel's cozy lobby and warm drinks",
         coordinates: { lat: 35.0055, lng: 135.7705 }
       },
       {
         name: "Evening in Pontocho",
         description: "Explore the atmospheric narrow alley filled with traditional restaurants and bars",
-        tip: "Look for restaurants with riverside seating (kawadoko)",
+        tip: "Perfect for cold weather - warm up with hot sake and kushiage",
         coordinates: { lat: 35.0064, lng: 135.7710 }
       }
     ]
@@ -343,7 +343,7 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 12,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Kyoto Exploration",
+    mainActivity: "Kyoto Indoor & Temple Day",
     region: "Kyoto",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
@@ -352,12 +352,25 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Fushimi Inari Shrine",
         description: "Thousands of vermillion torii gates winding up the mountain",
-        tip: "Go early morning to beat the crowds and get the best photos",
+        tip: "Cold but magical in snow! Bundle up and take the morning train",
         coordinates: { lat: 34.9671, lng: 135.7727 }
+      },
+      {
+        name: "Kiyomizu-dera Temple",
+        description: "Historic temple with stunning views over Kyoto",
+        tip: "The wooden stage offers great views - foggy/snowy weather adds atmosphere!",
+        coordinates: { lat: 34.9949, lng: 135.7850 }
+      },
+      {
+        name: "Nishiki Market",
+        description: "Explore 'Kyoto's Kitchen' - 5 centuries of food stalls",
+        tip: "Perfect indoor activity! Warm up with street food and hot tea",
+        coordinates: { lat: 35.0050, lng: 135.7688 }
       },
       {
         name: "Gion District",
         description: "Historic geisha district with traditional wooden machiya houses",
+        tip: "Look for ochaya (teahouses) with warmth and ambiance",
         tip: "Best chance to spot geiko and maiko in the early evening",
         coordinates: { lat: 35.0035, lng: 135.7751 }
       },
@@ -374,7 +387,7 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 13,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Arashiyama Bamboo Grove",
+    mainActivity: "Arashiyama - Bamboo & Monkeys",
     region: "Kyoto - Arashiyama",
     heroImage: "https://images.pexels.com/photos/18848739/pexels-photo-18848739.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Towering bamboo stalks in Arashiyama Bamboo Grove",
@@ -383,27 +396,27 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Arashiyama Bamboo Grove",
         time: "Early Morning",
-        description: "Walk through the ethereal bamboo forest - truly magical experience",
-        tip: "Arrive before 8am for photos without crowds",
+        description: "Walk through the ethereal bamboo forest - magical in snow!",
+        tip: "The sound of bamboo in wind is hauntingly beautiful. Dress warmly!",
         coordinates: { lat: 35.0172, lng: 135.6715 }
+      },
+      {
+        name: "Monkey Park Iwatayama",
+        description: "Hike up for wild Japanese macaques - snowy monkeys are adorable!",
+        tip: "The monkeys keep warm by moving around. Hot drinks available at the top",
+        coordinates: { lat: 35.0089, lng: 135.6747 }
       },
       {
         name: "Tenryu-ji Temple",
         description: "UNESCO World Heritage Zen temple with beautiful gardens",
-        coordinates: { lat: 35.0093, lng: 135.6708 },
-        tip: "The garden is a surviving example of 14th century design"
+        tip: "Indoor spaces and warm tea available",
+        coordinates: { lat: 35.0093, lng: 135.6708 }
       },
       {
         name: "Togetsukyo Bridge",
-        description: "Iconic bridge spanning the Katsura River with mountain backdrop",
-        coordinates: { lat: 35.0128, lng: 135.6778 },
-        tip: "Beautiful mountain views, especially during sunset"
-      },
-      {
-        name: "Monkey Park Iwatayama",
-        description: "Hike up for wild Japanese macaques and panoramic views of Kyoto",
-        tip: "The monkeys are friendly but don't make eye contact or show teeth",
-        coordinates: { lat: 35.0089, lng: 135.6747 }
+        description: "Iconic bridge with snowy mountain backdrop",
+        tip: "The river views are misty and atmospheric in cold weather",
+        coordinates: { lat: 35.0128, lng: 135.6778 }
       }
     ]
   },
@@ -413,7 +426,7 @@ export const itinerary: Record<string, DayPlan> = {
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
     mainActivity: "Nara Day Trip",
-    logistics: "Public Holiday: National Foundation Day",
+    logistics: "Public Holiday: National Foundation Day - bundle up!",
     region: "Nara",
     heroImage: "https://images.pexels.com/photos/31156943/pexels-photo-31156943.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Friendly deer at Todai-ji Temple in Nara",
@@ -427,20 +440,20 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Nara Park & Deer",
-        description: "Meet the famous sacred deer who roam freely - buy shika senbei to feed them!",
-        tip: "Bow to the deer and they'll bow back before taking the cracker",
+        description: "Meet the famous sacred deer - they're active even in cold weather!",
+        tip: "Buy shika senbei to feed them - they'll bow for crackers in any weather",
         coordinates: { lat: 34.6850, lng: 135.8429 }
       },
       {
         name: "Todai-ji Temple",
         description: "Home to the world's largest bronze Buddha statue in a massive wooden hall",
-        tip: "Try to fit through the pillar hole for good luck!",
+        tip: "Warming indoor area with the Daibutsu - perfect escape from the cold!",
         coordinates: { lat: 34.6868, lng: 135.8372 }
       },
       {
         name: "Kasuga Taisha Shrine",
-        description: "Ancient shrine famous for its thousands of bronze and stone lanterns",
-        tip: "Famous for its hundreds of bronze and stone lanterns",
+        description: "Ancient shrine famous for its thousands of lanterns",
+        tip: "The lantern path is atmospheric in misty/ snowy weather",
         coordinates: { lat: 34.6814, lng: 135.8483 }
       }
     ]
