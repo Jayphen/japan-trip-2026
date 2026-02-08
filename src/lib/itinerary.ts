@@ -643,24 +643,37 @@ export const itinerary: Record<string, DayPlan> = {
   },
 };
 
+function toLocalDateKey(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function parseLocalYmd(dateStr: string): Date {
+  return new Date(`${dateStr}T00:00:00`);
+}
+
 export function getDayPlan(date: Date): DayPlan | null {
-  const dateStr = date.toISOString().split("T")[0];
+  const dateStr = toLocalDateKey(date);
   return itinerary[dateStr] || null;
 }
 
 export function isBeforeTrip(date: Date): boolean {
-  const dateStr = date.toISOString().split("T")[0];
+  const dateStr = toLocalDateKey(date);
   return dateStr < TRIP_START;
 }
 
 export function isDuringTrip(date: Date): boolean {
-  const dateStr = date.toISOString().split("T")[0];
+  const dateStr = toLocalDateKey(date);
   return dateStr >= TRIP_START && dateStr <= TRIP_END;
 }
 
 export function getDaysUntilTrip(date: Date): number {
-  const tripStart = new Date(TRIP_START);
-  const diffTime = tripStart.getTime() - date.getTime();
+  const tripStart = parseLocalYmd(TRIP_START);
+  const today = new Date(date);
+  today.setHours(0, 0, 0, 0);
+  const diffTime = tripStart.getTime() - today.getTime();
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   return diffDays;
 }

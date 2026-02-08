@@ -62,6 +62,7 @@
 
   const todayStr = ymdInSydney(new Date());
   let weatherByDate: Record<string, WeatherSummary> = $state({});
+  let weatherErrorByDate: Record<string, string> = $state({});
 
   onMount(() => {
     const el = document.getElementById(`day-${todayStr}`);
@@ -83,11 +84,21 @@
           if (lat == null || lng == null) continue;
 
           const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}&date=${d.dateStr}`);
-          if (!res.ok) continue;
+          if (!res.ok) {
+            weatherErrorByDate = { ...weatherErrorByDate, [d.dateStr]: "Forecast not available yet" };
+            continue;
+          }
           const w: any = await res.json();
-          if (w?.error) continue;
+          if (w?.error) {
+            weatherErrorByDate = { ...weatherErrorByDate, [d.dateStr]: String(w.error) };
+            continue;
+          }
 
           weatherByDate = { ...weatherByDate, [d.dateStr]: w as WeatherSummary };
+          if (weatherErrorByDate[d.dateStr]) {
+            const { [d.dateStr]: _, ...rest } = weatherErrorByDate;
+            weatherErrorByDate = rest;
+          }
 
           // small delay to be kind to upstream
           await new Promise((r) => setTimeout(r, 150));
@@ -154,6 +165,10 @@
                 {#if w.precipProbMaxPct !== null && w.precipProbMaxPct !== undefined}
                   · {Math.round(w.precipProbMaxPct)}% precip
                 {/if}
+              </div>
+            {:else if weatherErrorByDate[item.dateStr]}
+              <div class="text-xs text-indigo-100/90 mt-1">
+                Forecast not available yet
               </div>
             {/if}
             {#if item.plan.trainInfo}
