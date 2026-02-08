@@ -3,7 +3,7 @@
 	import { getDayPlan } from "./itinerary";
 	import DayMap from "./DayMap.svelte";
 	import SpendingTab from "$lib/spending/SpendingTab.svelte";
-	import { weatherCodeToLabel, type WeatherSummary } from "$lib/weather";
+	import { weatherToLabel, type WeatherSummary } from "$lib/weather";
 
 	interface Props {
 		dayPlan: DayPlan;
@@ -145,7 +145,7 @@
 			{formatDate(currentDayPlan.date)}
 		</h2>
 		{#if weather}
-			{@const wl = weatherCodeToLabel(weather.weatherCode ?? undefined)}
+			{@const wl = weatherToLabel(weather)}
 			<div class="text-sm text-gray-700 font-medium">
 				<span class="mr-2">{wl.emoji}</span>
 				{wl.label}

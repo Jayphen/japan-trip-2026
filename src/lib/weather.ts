@@ -1,16 +1,24 @@
 export type WeatherSummary = {
   date: string; // YYYY-MM-DD
+  provider?: 'open-meteo' | 'tomorrow';
+  code?: number; // provider-specific code
   tempMaxC?: number;
   tempMinC?: number;
   precipProbMaxPct?: number;
-  weatherCode?: number;
-  // For today
+
+  // For "current" (if available)
   currentTempC?: number;
   currentWindKph?: number;
+
+  // Optional error info (we return 200 with error to avoid breaking UI)
+  error?: string;
+  upstreamStatus?: number;
 };
 
+export type CodeLabel = { emoji: string; label: string };
+
 // Open-Meteo weather codes: https://open-meteo.com/en/docs
-export function weatherCodeToLabel(code?: number): { emoji: string; label: string } {
+export function openMeteoCodeToLabel(code?: number): CodeLabel {
   if (code === undefined || code === null) return { emoji: '❓', label: 'Unknown' };
 
   // Clear
@@ -40,4 +48,43 @@ export function weatherCodeToLabel(code?: number): { emoji: string; label: strin
   if (code === 96 || code === 99) return { emoji: '⛈️', label: 'Thunder + hail' };
 
   return { emoji: '🌡️', label: `Code ${code}` };
+}
+
+export function tomorrowCodeToLabel(code?: number): CodeLabel {
+  if (code == null) return { emoji: '❓', label: 'Unknown' };
+
+  // Clear / clouds
+  if (code === 1000) return { emoji: '☀️', label: 'Clear' };
+  if (code === 1100) return { emoji: '🌤️', label: 'Mostly clear' };
+  if (code === 1101) return { emoji: '⛅', label: 'Partly cloudy' };
+  if (code === 1102) return { emoji: '☁️', label: 'Mostly cloudy' };
+  if (code === 1001) return { emoji: '☁️', label: 'Cloudy' };
+
+  // Fog
+  if (code === 2000 || code === 2100) return { emoji: '🌫️', label: 'Fog' };
+
+  // Drizzle / rain
+  if (code === 4000) return { emoji: '🌦️', label: 'Drizzle' };
+  if (code === 4001) return { emoji: '🌧️', label: 'Rain' };
+  if (code === 4200) return { emoji: '🌧️', label: 'Light rain' };
+  if (code === 4201) return { emoji: '🌧️', label: 'Heavy rain' };
+
+  // Snow
+  if (code === 5000) return { emoji: '❄️', label: 'Snow' };
+  if (code === 5100) return { emoji: '🌨️', label: 'Light snow' };
+  if (code === 5101) return { emoji: '❄️', label: 'Heavy snow' };
+
+  // Freezing rain
+  if (code === 6000 || code === 6001 || code === 6200 || code === 6201) return { emoji: '🌧️', label: 'Freezing rain' };
+
+  // Thunder
+  if (code === 8000) return { emoji: '⛈️', label: 'Thunderstorm' };
+
+  return { emoji: '🌡️', label: `Code ${code}` };
+}
+
+export function weatherToLabel(w: WeatherSummary | null | undefined): CodeLabel {
+  if (!w) return { emoji: '❓', label: 'Unknown' };
+  if (w.provider === 'tomorrow') return tomorrowCodeToLabel(w.code);
+  return openMeteoCodeToLabel(w.code);
 }

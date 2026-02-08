@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { itinerary, TRIP_START, TRIP_END, type DayPlan } from "$lib/itinerary";
-  import { weatherCodeToLabel, type WeatherSummary } from "$lib/weather";
+  import { weatherToLabel, type WeatherSummary } from "$lib/weather";
 
   // Force consistent rendering across SSR/client by:
   // - parsing trip dates as UTC ("Z")
@@ -147,7 +147,7 @@
 
             {#if weatherByDate[item.dateStr]}
               {@const w = weatherByDate[item.dateStr]}
-              {@const wl = weatherCodeToLabel(w.weatherCode ?? undefined)}
+              {@const wl = weatherToLabel(w)}
               <div class="text-xs text-indigo-100/90 mt-1">
                 {wl.emoji} {Math.round(w.tempMinC ?? 0)}–{Math.round(w.tempMaxC ?? 0)}°C
                 {#if w.precipProbMaxPct !== null && w.precipProbMaxPct !== undefined}
