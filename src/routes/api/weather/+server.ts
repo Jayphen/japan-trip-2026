@@ -29,7 +29,12 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
 		endpoint.searchParams.set('units', 'metric');
 		endpoint.searchParams.set(
 			'fields',
-			['weatherCode', 'temperatureMax', 'temperatureMin', 'precipitationProbability'].join(',')
+			[
+				'weatherCodeMax',
+				'temperatureMax',
+				'temperatureMin',
+				'precipitationProbabilityMax'
+			].join(',')
 		);
 
 		const res = await fetch(endpoint.toString(), { headers: { accept: 'application/json' } });
@@ -56,10 +61,10 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
 			{
 				date,
 				provider: 'tomorrow',
-				code: values.weatherCode ?? null,
+				code: values.weatherCodeMax ?? values.weatherCodeAvg ?? values.weatherCodeMin ?? null,
 				tempMaxC: values.temperatureMax ?? null,
 				tempMinC: values.temperatureMin ?? null,
-				precipProbMaxPct: values.precipitationProbability ?? null
+				precipProbMaxPct: values.precipitationProbabilityMax ?? values.precipitationProbabilityAvg ?? null
 			},
 			{ headers: { 'cache-control': 'public, max-age=900' } }
 		);
