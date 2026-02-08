@@ -75,7 +75,7 @@
 
           <!-- Event pill -->
           <a
-            href="/"
+            href={`/day/${item.dateStr}`}
             class="flex-1 rounded-2xl bg-indigo-500/90 hover:bg-indigo-500 transition-colors px-4 py-3 shadow-sm"
             title={item.plan.mainActivity}
           >
