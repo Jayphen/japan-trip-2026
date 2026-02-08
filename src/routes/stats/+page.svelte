@@ -28,7 +28,7 @@
           api = convexApi.api;
           const client = convex.useConvexClient();
           
-          unsubscribe = client.onUpdate(api.expenses.list, {}, (data: any[]) => {
+          unsubscribe = client.onUpdate(api.expenses.all, {}, (data: any[]) => {
             expenses = data || [];
             totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
             convertToHomeCurrency(totalJpy).then(aud => totalAud = aud);

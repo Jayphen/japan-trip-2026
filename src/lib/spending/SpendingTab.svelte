@@ -5,6 +5,8 @@
   import type { Id } from "../../convex/_generated/dataModel";
   import { browser } from "$app/environment";
   import { onMount } from "svelte";
+  import { useConvexClient } from "convex-svelte";
+  import { api } from "../../convex/_generated/api";
 
   interface Props {
     date: string; // YYYY-MM-DD
@@ -12,38 +14,26 @@
 
   let { date } = $props();
 
-  // Convex API types (used dynamically)
-  let api: any;
-  let client: any;
+  // Get Convex client synchronously during component initialization
+  const client = useConvexClient();
+
   let expenses: any[] = $state([]);
   let totalJpy = $state(0);
   let totalAud = $state(0);
   let unsubscribe: (() => void) | undefined;
-  
+
   // Exchange rate display
   let rateDisplay = $state("Loading...");
   let exchangeRate = $state(97.5);
 
   onMount(() => {
-    let unsubscribe: (() => void) | undefined;
-    (async () => {
-      if (browser) {
-        try {
-          const convex = await import("convex-svelte");
-          const convexApi = await import("../../convex/_generated/api");
-          api = convexApi.api;
-          client = convex.useConvexClient();
-          
-          unsubscribe = client.onUpdate(api.expenses.list, { date }, (data: any[]) => {
-            expenses = data || [];
-            totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
-          });
-        } catch (e) {
-          console.warn("Convex not available:", e);
-        }
-      }
-    })();
-    
+    if (browser && client) {
+      unsubscribe = client.onUpdate(api.expenses.list, { date }, (data: any[]) => {
+        expenses = data || [];
+        totalJpy = expenses.reduce((sum, e) => sum + e.amount, 0);
+      });
+    }
+
     return () => {
       if (unsubscribe) unsubscribe();
     };

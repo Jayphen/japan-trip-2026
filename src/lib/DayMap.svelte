@@ -128,8 +128,11 @@
 		}
 	}
 
+	let initialized = false;
+
 	onMount(function() {
 		initMap();
+		initialized = true;
 	});
 
 	onDestroy(function() {
@@ -139,14 +142,14 @@
 		}
 	});
 
-	// Reinitialize map when dayPlan changes
+	// Reinitialize map when dayPlan changes (but not on initial mount)
 	$effect(() => {
 		dayPlan; // Track dependency
-		if (map) {
+		if (initialized && map) {
 			map.remove();
 			map = null;
+			initMap();
 		}
-		initMap();
 	});
 </script>
 
