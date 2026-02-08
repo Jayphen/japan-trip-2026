@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { itinerary, TRIP_START, TRIP_END, type DayPlan } from "$lib/itinerary";
+  import { weatherCodeToLabel, type WeatherSummary } from "$lib/weather";
 
   // Force consistent rendering across SSR/client by:
   // - parsing trip dates as UTC ("Z")
@@ -60,10 +61,29 @@
     .sort((a, b) => a.date.getTime() - b.date.getTime());
 
   const todayStr = ymdInSydney(new Date());
+  let weatherByDate: Record<string, WeatherSummary> = $state({});
 
   onMount(() => {
     const el = document.getElementById(`day-${todayStr}`);
     if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+
+    // Fetch forecast for each day (best-effort). Open-Meteo supports ~16 days.
+    for (const d of days) {
+      (async () => {
+        try {
+          const lat = d.plan.coordinates?.lat;
+          const lng = d.plan.coordinates?.lng;
+          if (lat == null || lng == null) return;
+
+          const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}&date=${d.dateStr}`);
+          if (!res.ok) return;
+          const w = (await res.json()) as WeatherSummary;
+          weatherByDate = { ...weatherByDate, [d.dateStr]: w };
+        } catch {
+          // ignore
+        }
+      })();
+    }
   });
 </script>
 
@@ -112,6 +132,17 @@
             <div class="text-sm text-indigo-50/95 mt-1">
               {item.plan.mainActivity}
             </div>
+
+            {#if weatherByDate[item.dateStr]}
+              {@const w = weatherByDate[item.dateStr]}
+              {@const wl = weatherCodeToLabel(w.weatherCode ?? undefined)}
+              <div class="text-xs text-indigo-100/90 mt-1">
+                {wl.emoji} {Math.round(w.tempMinC ?? 0)}–{Math.round(w.tempMaxC ?? 0)}°C
+                {#if w.precipProbMaxPct !== null && w.precipProbMaxPct !== undefined}
+                  · {Math.round(w.precipProbMaxPct)}% rain
+                {/if}
+              </div>
+            {/if}
             {#if item.plan.trainInfo}
               <div class="text-xs text-indigo-100/90 mt-1">
                 🚄 {item.plan.trainInfo}

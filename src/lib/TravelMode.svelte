@@ -3,6 +3,7 @@
 	import { getDayPlan } from "./itinerary";
 	import DayMap from "./DayMap.svelte";
 	import SpendingTab from "$lib/spending/SpendingTab.svelte";
+	import { weatherCodeToLabel, type WeatherSummary } from "$lib/weather";
 
 	interface Props {
 		dayPlan: DayPlan;
@@ -12,6 +13,8 @@
 	let { dayPlan, currentDate }: Props = $props();
 	let viewDateOffset = $state(0);
 	let imageError = $state(false);
+	let weather: WeatherSummary | null = $state(null);
+	let weatherError: string | null = $state(null);
 	let activeTab = $state<"itinerary" | "spending">("itinerary");
 
 	let viewDate = $derived(() => {
@@ -32,6 +35,30 @@
 	$effect(() => {
 		currentDayPlan;
 		imageError = false;
+	});
+
+	// Weather (best-effort)
+	$effect(() => {
+		currentDayPlan;
+		weather = null;
+		weatherError = null;
+
+		(async () => {
+			try {
+				const lat = currentDayPlan.coordinates?.lat;
+				const lng = currentDayPlan.coordinates?.lng;
+				if (lat == null || lng == null) return;
+
+				const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}&date=${currentDayPlan.date}`);
+				if (!res.ok) {
+					weatherError = `Weather unavailable (${res.status})`;
+					return;
+				}
+				weather = (await res.json()) as WeatherSummary;
+			} catch {
+				weatherError = 'Weather unavailable';
+			}
+		})();
 	});
 
 	function navigateDay(direction: number) {
@@ -112,6 +139,19 @@
 		<h2 class="text-3xl font-bold text-rose-900 mb-2">
 			{formatDate(currentDayPlan.date)}
 		</h2>
+		{#if weather}
+			{@const wl = weatherCodeToLabel(weather.weatherCode ?? undefined)}
+			<div class="text-sm text-gray-700 font-medium">
+				<span class="mr-2">{wl.emoji}</span>
+				{wl.label}
+				· {Math.round(weather.tempMinC ?? 0)}–{Math.round(weather.tempMaxC ?? 0)}°C
+				{#if weather.precipProbMaxPct !== null && weather.precipProbMaxPct !== undefined}
+					· {Math.round(weather.precipProbMaxPct)}% rain
+				{/if}
+			</div>
+		{:else if weatherError}
+			<div class="text-xs text-gray-500">{weatherError}</div>
+		{/if}
 	</div>
 
 	<!-- Tab Switcher -->
