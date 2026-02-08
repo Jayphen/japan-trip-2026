@@ -468,9 +468,10 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 15,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Extra Night in Kyoto",
+    mainActivity: "Osaka Day Trip (from Kyoto)",
     logistics: "Ship luggage to Mitsui Garden Hotel Shiodome Italia-gai in morning",
-    region: "Kyoto",
+    trainInfo: "JR Special Rapid Kyoto ↔ Osaka (about 30 minutes each way)",
+    region: "Osaka (Day Trip from Kyoto)",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
     coordinates: { lat: 35.0116, lng: 135.7681 },
@@ -482,16 +483,30 @@ export const itinerary: Record<string, DayPlan> = {
         tip: "Travel light for tomorrow's train ride!"
       },
       {
-        name: "Extra Day in Kyoto",
-        description: "Keep it low-pressure: revisit one favorite area and leave padding for cafe breaks",
-        tip: "This is a buffer day, so skip long cross-city hops"
+        name: "Train to Osaka",
+        time: "Late Morning",
+        description: "Take a quick JR ride from Kyoto to Osaka for a full but manageable day trip",
+        tip: "Use JR Special Rapid for speed and convenience",
+        coordinates: { lat: 34.7025, lng: 135.4959 }
       },
       {
-        name: "Kyoto Farewell Izakaya Crawl",
+        name: "Namba + Dotonbori Walk",
+        time: "Afternoon",
+        description: "Explore canal-side streets, arcades, and food lanes around Namba and Dotonbori",
+        tip: "Keep this flexible and snack as you go instead of locking in a heavy lunch",
+        coordinates: { lat: 34.6687, lng: 135.5019 }
+      },
+      {
+        name: "Osaka Izakaya Night",
         time: "Evening",
-        description: "Do 2 stops max around Pontocho and Kiyamachi for a final Kyoto food night",
-        tip: "Try a yakitori spot first, then a sake-forward izakaya for the last stop",
-        coordinates: { lat: 35.0064, lng: 135.7710 }
+        description: "Do a 2-stop izakaya evening in Namba/Ura-Namba before heading back to Kyoto",
+        tip: "Aim for an early first seating so the return to Kyoto stays easy",
+        coordinates: { lat: 34.6668, lng: 135.5000 }
+      },
+      {
+        name: "Return to Kyoto",
+        description: "Head back to Kyoto for your final night at The Gate Hotel",
+        tip: "Set a latest-train target before dinner so the day stays relaxed"
       }
     ]
   },
