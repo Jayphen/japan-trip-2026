@@ -151,7 +151,7 @@
               <div class="text-xs text-indigo-100/90 mt-1">
                 {wl.emoji} {Math.round(w.tempMinC ?? 0)}–{Math.round(w.tempMaxC ?? 0)}°C
                 {#if w.precipProbMaxPct !== null && w.precipProbMaxPct !== undefined}
-                  · {Math.round(w.precipProbMaxPct)}% rain
+                  · {Math.round(w.precipProbMaxPct)}% precip
                 {/if}
               </div>
             {/if}

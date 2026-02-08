@@ -151,7 +151,7 @@
 				{wl.label}
 				· {Math.round(weather.tempMinC ?? 0)}–{Math.round(weather.tempMaxC ?? 0)}°C
 				{#if weather.precipProbMaxPct !== null && weather.precipProbMaxPct !== undefined}
-					· {Math.round(weather.precipProbMaxPct)}% rain
+					· {Math.round(weather.precipProbMaxPct)}% precip
 				{/if}
 			</div>
 		{:else if weatherError}
