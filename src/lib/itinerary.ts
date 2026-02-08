@@ -386,7 +386,7 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 13,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Arashiyama - Bamboo & Monkeys",
+    mainActivity: "Arashiyama - Bamboo & Temples",
     region: "Kyoto - Arashiyama",
     heroImage: "https://images.pexels.com/photos/18848739/pexels-photo-18848739.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Towering bamboo stalks in Arashiyama Bamboo Grove",
@@ -400,10 +400,10 @@ export const itinerary: Record<string, DayPlan> = {
         coordinates: { lat: 35.0172, lng: 135.6715 }
       },
       {
-        name: "Monkey Park Iwatayama",
-        description: "Hike up for wild Japanese macaques - snowy monkeys are adorable!",
-        tip: "The monkeys keep warm by moving around. Hot drinks available at the top",
-        coordinates: { lat: 35.0089, lng: 135.6747 }
+        name: "Okochi Sanso Garden",
+        description: "Stroll a peaceful hilltop villa garden with sweeping Arashiyama views",
+        tip: "Great winter stop after the bamboo grove, with matcha tea included at the end",
+        coordinates: { lat: 35.0164, lng: 135.6697 }
       },
       {
         name: "Tenryu-ji Temple",
