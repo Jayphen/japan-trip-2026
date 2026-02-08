@@ -343,7 +343,7 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 12,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Kyoto Indoor & Temple Day",
+    mainActivity: "Kyoto East Side & Izakaya Night",
     region: "Kyoto",
     heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Pontocho Alley at night in Kyoto",
@@ -351,33 +351,31 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Fushimi Inari Shrine",
+        time: "Early Morning",
         description: "Thousands of vermillion torii gates winding up the mountain",
         tip: "Cold but magical in snow! Bundle up and take the morning train",
         coordinates: { lat: 34.9671, lng: 135.7727 }
       },
       {
-        name: "Kiyomizu-dera Temple",
-        description: "Historic temple with stunning views over Kyoto",
-        tip: "The wooden stage offers great views - foggy/snowy weather adds atmosphere!",
-        coordinates: { lat: 34.9949, lng: 135.7850 }
-      },
-      {
         name: "Nishiki Market",
-        description: "Explore 'Kyoto's Kitchen' - 5 centuries of food stalls",
+        time: "Late Morning",
+        description: "Explore 'Kyoto's Kitchen' and keep lunch simple with a few shared stalls",
         tip: "Perfect indoor activity! Warm up with street food and hot tea",
         coordinates: { lat: 35.0050, lng: 135.7688 }
       },
       {
-        name: "Gion District",
-        description: "Historic geisha district with traditional wooden machiya houses",
-        tip: "Warm up in a tea house (ochaya). Best chance to spot geiko and maiko is early evening.",
-        coordinates: { lat: 35.0035, lng: 135.7751 }
+        name: "Kiyomizu-dera + Gion Walk",
+        time: "Afternoon",
+        description: "Do one temple block in Higashiyama, then walk downhill into Gion at golden hour",
+        tip: "Keep this as one connected route to avoid too much backtracking",
+        coordinates: { lat: 34.9949, lng: 135.7850 }
       },
       {
-        name: "Kiyomizu-dera Temple",
-        description: "Historic temple with stunning views over Kyoto",
-        coordinates: { lat: 34.9949, lng: 135.7850 },
-        tip: "Don't miss the Otawa Waterfall where you can drink for health, love, or success"
+        name: "Pontocho Izakaya Dinner",
+        time: "Evening",
+        description: "Pick one alley and settle in: yakitori, oden, or small-plate kappo near Pontocho/Kiyamachi",
+        coordinates: { lat: 35.0064, lng: 135.7710 },
+        tip: "Good options: Pontocho, Kiyamachi-dori, or Sanjo side streets for compact izakaya clusters"
       }
     ]
   },
@@ -400,22 +398,23 @@ export const itinerary: Record<string, DayPlan> = {
         coordinates: { lat: 35.0172, lng: 135.6715 }
       },
       {
-        name: "Okochi Sanso Garden",
-        description: "Stroll a peaceful hilltop villa garden with sweeping Arashiyama views",
-        tip: "Great winter stop after the bamboo grove, with matcha tea included at the end",
-        coordinates: { lat: 35.0164, lng: 135.6697 }
-      },
-      {
         name: "Tenryu-ji Temple",
         description: "UNESCO World Heritage Zen temple with beautiful gardens",
         tip: "Indoor spaces and warm tea available",
         coordinates: { lat: 35.0093, lng: 135.6708 }
       },
       {
-        name: "Togetsukyo Bridge",
-        description: "Iconic bridge with snowy mountain backdrop",
+        name: "Togetsukyo Bridge + Riverside",
+        description: "Iconic bridge with snowy mountain backdrop and an easy riverside stroll",
         tip: "The river views are misty and atmospheric in cold weather",
         coordinates: { lat: 35.0128, lng: 135.6778 }
+      },
+      {
+        name: "Kyoto Izakaya Night (Light)",
+        time: "Evening",
+        description: "Keep tonight simple with one neighborhood izakaya near Kawaramachi or Omiya",
+        tip: "After a full Arashiyama day, pick one place and linger instead of bar-hopping",
+        coordinates: { lat: 35.0037, lng: 135.7675 }
       }
     ]
   },
@@ -454,6 +453,13 @@ export const itinerary: Record<string, DayPlan> = {
         description: "Ancient shrine famous for its thousands of lanterns",
         tip: "The lantern path is atmospheric in misty/ snowy weather",
         coordinates: { lat: 34.6814, lng: 135.8483 }
+      },
+      {
+        name: "Return to Kyoto + Cozy Izakaya",
+        time: "Evening",
+        description: "Easy dinner around Kiyamachi after the Nara day trip",
+        tip: "Look for counter-style places with nabe or oden to warm up",
+        coordinates: { lat: 35.0082, lng: 135.7704 }
       }
     ]
   },
@@ -477,13 +483,15 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Extra Day in Kyoto",
-        description: "Revisit favorite spots or explore new areas in Kyoto",
-        tip: "Use this day to revisit temples or neighborhoods you loved"
+        description: "Keep it low-pressure: revisit one favorite area and leave padding for cafe breaks",
+        tip: "This is a buffer day, so skip long cross-city hops"
       },
       {
-        name: "Last Night in Kyoto",
-        description: "Evening stroll along Takasegawa canal at The Gate Hotel",
-        tip: "Enjoy the hotel's rooftop bar with canal views"
+        name: "Kyoto Farewell Izakaya Crawl",
+        time: "Evening",
+        description: "Do 2 stops max around Pontocho and Kiyamachi for a final Kyoto food night",
+        tip: "Try a yakitori spot first, then a sake-forward izakaya for the last stop",
+        coordinates: { lat: 35.0064, lng: 135.7710 }
       }
     ]
   },
@@ -512,9 +520,11 @@ export const itinerary: Record<string, DayPlan> = {
         tip: "Use the TaxisGo app if luggage is heavy"
       },
       {
-        name: "Evening Exploration",
-        description: "Visit Tokyo Tower or Zojoji Temple nearby",
-        coordinates: { lat: 35.6586, lng: 139.7454 }
+        name: "Shinbashi Izakaya Night",
+        time: "Evening",
+        description: "Short walk to Shinbashi for classic under-the-tracks izakayas and grilled skewers",
+        coordinates: { lat: 35.6663, lng: 139.7584 },
+        tip: "Great clusters around Shinbashi SL Square and the Yurakucho side of the tracks"
       }
     ]
   },
@@ -542,9 +552,10 @@ export const itinerary: Record<string, DayPlan> = {
         tip: "Many restaurants have special Valentine's menus"
       },
       {
-        name: "Fancy Dinner",
-        description: "Special Valentine's Day dinner - make reservations in advance!",
-        tip: "Ginza has incredible high-end sushi and French-Japanese fusion"
+        name: "Valentine's Izakaya Dinner",
+        description: "Book a cozy counter izakaya in Ebisu, Shibuya backstreets, or Yurakucho",
+        coordinates: { lat: 35.6467, lng: 139.7101 },
+        tip: "Reserve early slots (around 18:00) to avoid long waits on Valentine's night"
       }
     ]
   },
@@ -565,9 +576,11 @@ export const itinerary: Record<string, DayPlan> = {
         tip: "Good day for shopping, cafes, or revisiting a favorite neighborhood"
       },
       {
-        name: "Nice Dinner",
-        description: "Pick a great dinner spot near Shiodome/Shinbashi/Ginza",
-        tip: "If you want something special, book ahead (popular places fill up quickly)"
+        name: "Izakaya Hop: Shinbashi or Yurakucho",
+        time: "Evening",
+        description: "Pick one area and do a relaxed 2-stop izakaya night",
+        coordinates: { lat: 35.6735, lng: 139.7631 },
+        tip: "Yurakucho is great for old-school alleys; Shinbashi is better for high-energy after-work spots"
       }
     ]
   },
@@ -594,8 +607,9 @@ export const itinerary: Record<string, DayPlan> = {
       },
       {
         name: "Last Night in Tokyo",
-        description: "Farewell dinner and drinks in Shibuya or return to favorite spots",
-        tip: "Nonbei Yokocho (Drunkard's Alley) offers a nostalgic, tight-knit bar experience"
+        description: "Farewell izakaya night in Shibuya with optional stop in Nonbei Yokocho",
+        tip: "If Shibuya feels packed, pivot to Ebisu Yokocho for a similar vibe with slightly less crowding",
+        coordinates: { lat: 35.6597, lng: 139.7016 }
       }
     ]
   },
@@ -619,7 +633,7 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Last-Minute Shopping",
         description: "Pick up any remaining souvenirs or gifts",
-        tip: "Tokyo Station has excellent omiyage (souvenir) shops"
+        tip: "Tokyo Station has excellent omiyage shops plus easy early-evening izakaya options in Yaesu underground"
       },
       {
         name: "Taxi to Tokyo Station",
