@@ -490,7 +490,7 @@ export const itinerary: Record<string, DayPlan> = {
     activities: [
       {
         name: "Shinkansen to Tokyo",
-        description: "Bullet train from Kyoto to Tokyo - about 2 hours 15 minutes",
+        description: "NOZOMI 232 from Kyoto (12:30) to Tokyo (14:45) - Series N700, Ordinary Car 3, Seat 13-D, 13-E",
         tip: "Sit on the right side for Mt. Fuji views on a clear day!",
         coordinates: { lat: 35.0116, lng: 135.7681 }
       },
