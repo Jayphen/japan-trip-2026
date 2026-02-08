@@ -1,33 +1,40 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { itinerary, TRIP_START, TRIP_END, type DayPlan } from "$lib/itinerary";
 
-  const tripStart = new Date(TRIP_START + "T00:00:00");
-  const tripEnd = new Date(TRIP_END + "T00:00:00");
+  // Force consistent rendering across SSR/client by:
+  // - parsing trip dates as UTC ("Z")
+  // - formatting in Australia/Sydney explicitly
+  const TZ = "Australia/Sydney";
 
-  const weekdayFmt = new Intl.DateTimeFormat("en-AU", { weekday: "short" });
-  const monthFmt = new Intl.DateTimeFormat("en-AU", { month: "long" });
-  const dayFmt = new Intl.DateTimeFormat("en-AU", { day: "numeric" });
-  const rangeFmt = new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "short" });
+  const tripStart = new Date(TRIP_START + "T00:00:00.000Z");
+  const tripEnd = new Date(TRIP_END + "T00:00:00.000Z");
+
+  const weekdayFmt = new Intl.DateTimeFormat("en-AU", { weekday: "short", timeZone: TZ });
+  const monthFmt = new Intl.DateTimeFormat("en-AU", { month: "long", timeZone: TZ });
+  const dayFmt = new Intl.DateTimeFormat("en-AU", { day: "numeric", timeZone: TZ });
+  const rangeFmt = new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "short", timeZone: TZ });
 
   function parseDate(dateStr: string): Date {
-    return new Date(dateStr + "T00:00:00");
+    // Treat YYYY-MM-DD as a calendar day, not a local timestamp.
+    return new Date(dateStr + "T00:00:00.000Z");
   }
 
   function isBetween(date: Date, start: Date, end: Date) {
     return date.getTime() >= start.getTime() && date.getTime() <= end.getTime();
   }
 
-  // Monday-start week bucket.
+  // Monday-start week bucket (timezone-stable by using UTC day math).
   function weekStart(d: Date): Date {
-    const date = new Date(d);
-    const day = (date.getDay() + 6) % 7; // Mon=0..Sun=6
-    date.setDate(date.getDate() - day);
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+    const day = (date.getUTCDay() + 6) % 7; // Mon=0..Sun=6
+    date.setUTCDate(date.getUTCDate() - day);
+    return date;
   }
 
   function weekEnd(ws: Date): Date {
     const we = new Date(ws);
-    we.setDate(we.getDate() + 6);
+    we.setUTCDate(we.getUTCDate() + 6);
     return we;
   }
 
@@ -37,10 +44,27 @@
     return `${rangeFmt.format(ws)} – ${rangeFmt.format(we)}`;
   }
 
+  function ymdInSydney(date: Date): string {
+    // en-CA gives YYYY-MM-DD
+    return new Intl.DateTimeFormat("en-CA", {
+      timeZone: TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(date);
+  }
+
   const days: Array<{ dateStr: string; date: Date; plan: DayPlan }> = Object.entries(itinerary)
     .map(([dateStr, plan]) => ({ dateStr, date: parseDate(dateStr), plan }))
     .filter(({ date }) => isBetween(date, tripStart, tripEnd))
     .sort((a, b) => a.date.getTime() - b.date.getTime());
+
+  const todayStr = ymdInSydney(new Date());
+
+  onMount(() => {
+    const el = document.getElementById(`day-${todayStr}`);
+    if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
 </script>
 
 <div class="min-h-screen bg-neutral-950 text-neutral-50">
@@ -66,7 +90,7 @@
           </div>
         {/if}
 
-        <div class="flex gap-3">
+        <div class="flex gap-3" id={`day-${item.dateStr}`}>
           <!-- Left date rail -->
           <div class="w-14 shrink-0 text-center">
             <div class="text-xs text-neutral-400">{weekdayFmt.format(item.date)}</div>
@@ -76,7 +100,7 @@
           <!-- Event pill -->
           <a
             href={`/day/${item.dateStr}`}
-            class="flex-1 rounded-2xl bg-indigo-500/90 hover:bg-indigo-500 transition-colors px-4 py-3 shadow-sm"
+            class={`flex-1 rounded-2xl px-4 py-3 shadow-sm transition-colors ${item.dateStr === todayStr ? 'bg-indigo-400 ring-2 ring-white/70' : 'bg-indigo-500/90 hover:bg-indigo-500'}`}
             title={item.plan.mainActivity}
           >
             <div class="flex items-center justify-between gap-3">
