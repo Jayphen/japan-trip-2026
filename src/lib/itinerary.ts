@@ -423,42 +423,39 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 14,
     hotel: "The Gate Hotel Takasegawa",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=The+Gate+Hotel+Takasegawa+Kyoto",
-    mainActivity: "Nara Day Trip",
-    logistics: "Public Holiday: National Foundation Day - bundle up!",
-    region: "Nara",
-    heroImage: "https://images.pexels.com/photos/31156943/pexels-photo-31156943.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    heroImageAlt: "Friendly deer at Todai-ji Temple in Nara",
-    coordinates: { lat: 34.6851, lng: 135.8048 },
+    mainActivity: "Kyoto East + teamLab Biovortex",
+    logistics: "Public Holiday: National Foundation Day - avoid cross-city hops and keep the day Kyoto-based.",
+    region: "Kyoto",
+    heroImage: "https://images.pexels.com/photos/28298102/pexels-photo-28298102.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    heroImageAlt: "Pontocho Alley at night in Kyoto",
+    coordinates: { lat: 35.0116, lng: 135.7681 },
     activities: [
       {
-        name: "Train to Nara",
-        description: "45-minute ride from Kyoto to Japan's first permanent capital",
-        coordinates: { lat: 34.9858, lng: 135.7588 },
-        tip: "Take the Kintetsu line for a faster trip that drops you closer to Nara Park than JR"
+        name: "Late Morning Start: Nishiki + Teramachi",
+        time: "Late Morning",
+        description: "Easy start with market browsing and covered shopping streets near Kawaramachi.",
+        tip: "Great weather-proof start if skies are cloudy or drizzly.",
+        coordinates: { lat: 35.0050, lng: 135.7688 }
       },
       {
-        name: "Nara Park & Deer",
-        description: "Meet the famous sacred deer - they're active even in cold weather!",
-        tip: "Buy shika senbei to feed them - they'll bow for crackers in any weather",
-        coordinates: { lat: 34.6850, lng: 135.8429 }
+        name: "Higashiyama Walk: Kiyomizu-dera to Yasaka Pagoda",
+        time: "Afternoon",
+        description: "Do one connected route through Sannenzaka/Ninenzaka, then drift into Gion.",
+        tip: "This keeps things scenic without too much transit overhead.",
+        coordinates: { lat: 34.9949, lng: 135.7850 }
       },
       {
-        name: "Todai-ji Temple",
-        description: "Home to the world's largest bronze Buddha statue in a massive wooden hall",
-        tip: "Warming indoor area with the Daibutsu - perfect escape from the cold!",
-        coordinates: { lat: 34.6868, lng: 135.8372 }
+        name: "teamLab Biovortex Kyoto",
+        time: "18:00",
+        description: "Immersive digital art experience near Kyoto Station (arrive 20-30 minutes early).",
+        tip: "Book/confirm timed entry and allow at least 90 minutes inside.",
+        coordinates: { lat: 34.9835, lng: 135.7580 }
       },
       {
-        name: "Kasuga Taisha Shrine",
-        description: "Ancient shrine famous for its thousands of lanterns",
-        tip: "The lantern path is atmospheric in misty/ snowy weather",
-        coordinates: { lat: 34.6814, lng: 135.8483 }
-      },
-      {
-        name: "Return to Kyoto + Cozy Izakaya",
+        name: "Post-teamLab Dinner",
         time: "Evening",
-        description: "Easy dinner around Kiyamachi after the Nara day trip",
-        tip: "Look for counter-style places with nabe or oden to warm up",
+        description: "Dinner near Kyoto Station or return to Kiyamachi/Pontocho for a relaxed izakaya finish.",
+        tip: "After 20:00, Kyoto Station area is easiest; central Kyoto has better vibe if energy allows.",
         coordinates: { lat: 35.0082, lng: 135.7704 }
       }
     ]
