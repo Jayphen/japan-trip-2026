@@ -654,7 +654,7 @@ export const itinerary: Record<string, DayPlan> = {
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
     mainActivity: "Departure Day",
-    logistics: "Flight departs 22:45",
+    logistics: "Flight departs 22:45 (Haneda)",
     region: "Tokyo - Departure",
     heroImage: "https://images.pexels.com/photos/19162388/pexels-photo-19162388.jpeg?auto=compress&cs=tinysrgb&w=1280",
     heroImageAlt: "Tokyo Station Marunouchi Building",
@@ -668,25 +668,20 @@ export const itinerary: Record<string, DayPlan> = {
       {
         name: "Last-Minute Shopping",
         description: "Pick up any remaining souvenirs or gifts",
-        tip: "Tokyo Station has excellent omiyage shops plus easy early-evening izakaya options in Yaesu underground"
+        tip: "Ginza, Yurakucho, or Tokyo Station are all easy from Shiodome for final omiyage runs"
       },
       {
-        name: "Taxi to Tokyo Station",
+        name: "Airport Transfer to Haneda",
         time: "Evening",
-        description: "Take taxi from Shiodome to Tokyo Station",
-        tip: "Have your hotel call a taxi for you in advance"
-      },
-      {
-        name: "Narita Express",
-        description: "N'EX train from Tokyo Station to Narita Airport",
-        coordinates: { lat: 35.6812, lng: 139.7671 },
-        tip: "Reserve your seats in advance, even with a pass, as it's all reserved seating"
+        description: "Take taxi or train from Shiodome/Shinbashi area to Haneda Airport (HND)",
+        tip: "For a 22:45 international flight, target airport arrival around 19:45"
       },
       {
         name: "Flight Home",
         time: "22:45",
-        description: "Departure from Narita Airport",
-        tip: "Arrive at airport 3 hours early for international flights"
+        description: "Departure from Haneda Airport (HND)",
+        coordinates: { lat: 35.5494, lng: 139.7798 },
+        tip: "Leave buffer for evening traffic; ask hotel to help book taxi if needed"
       }
     ]
   },
