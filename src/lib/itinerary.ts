@@ -610,6 +610,12 @@ export const itinerary: Record<string, DayPlan> = {
         description: "Head back before it gets too late; dinner near Shinbashi/Yurakucho works well.",
         tip: "After a full day trip, one cozy izakaya stop is perfect.",
         coordinates: { lat: 35.6663, lng: 139.7584 }
+      },
+      {
+        name: "Backup (Rain/Low-Energy): Yokohama Indoor Day",
+        description: "If weather turns rough, swap to Yokohama: Cup Noodles Museum, Red Brick Warehouse, and Minato Mirai malls/cafes.",
+        tip: "Fast access from Tokyo with lots of covered options; easy to end early if needed.",
+        coordinates: { lat: 35.4550, lng: 139.6316 }
       }
     ]
   },
