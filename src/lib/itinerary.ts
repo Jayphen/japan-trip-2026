@@ -576,23 +576,40 @@ export const itinerary: Record<string, DayPlan> = {
     dayNumber: 18,
     hotel: "Mitsui Garden Hotel Shiodome Italia-gai",
     hotelUrl: "https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Shiodome+Italia-gai",
-    mainActivity: "Tokyo Flex Day",
-    region: "Tokyo - Shiodome",
-    heroImage: "https://images.pexels.com/photos/19980175/pexels-photo-19980175.jpeg?auto=compress&cs=tinysrgb&w=1280",
-    heroImageAlt: "Tokyo Tower at night",
-    coordinates: { lat: 35.6614, lng: 139.7617 },
+    mainActivity: "Day Trip: Kamakura + Enoshima",
+    logistics: "Use JR Yokosuka Line from Tokyo/Shinbashi area; leave early for a relaxed pace.",
+    trainInfo: "Tokyo/Shinbashi → Kamakura (JR Yokosuka Line, ~55-65 min) | Enoshima → Tokyo via Fujisawa",
+    region: "Kamakura & Enoshima",
+    heroImage: "https://images.pexels.com/photos/1614010/pexels-photo-1614010.jpeg?auto=compress&cs=tinysrgb&w=1280",
+    heroImageAlt: "Great Buddha of Kamakura with blue sky",
+    coordinates: { lat: 35.3193, lng: 139.5468 },
     activities: [
       {
-        name: "Free Day in Tokyo",
-        description: "Explore Tokyo at your own pace",
-        tip: "Good day for shopping, cafes, or revisiting a favorite neighborhood"
+        name: "Train to Kamakura",
+        time: "Morning",
+        description: "Head out after breakfast for a low-stress day trip from Tokyo.",
+        tip: "Aim to arrive before 10:00 to beat midday crowds.",
+        coordinates: { lat: 35.3193, lng: 139.5468 }
       },
       {
-        name: "Izakaya Hop: Shinbashi or Yurakucho",
+        name: "Kamakura Highlights",
+        description: "Visit Kotoku-in (Great Buddha) and either Hasedera or Tsurugaoka Hachimangu.",
+        tip: "Pick 2-3 stops max to keep energy for the coast later.",
+        coordinates: { lat: 35.3167, lng: 139.5356 }
+      },
+      {
+        name: "Enoshima Coast Walk",
+        time: "Afternoon",
+        description: "Move to Enoshima for sea views, shrine paths, and a sunset-friendly stroll.",
+        tip: "On clear days, keep an eye out for Mt. Fuji views toward late afternoon.",
+        coordinates: { lat: 35.2995, lng: 139.4810 }
+      },
+      {
+        name: "Return to Tokyo + Easy Dinner",
         time: "Evening",
-        description: "Pick one area and do a relaxed 2-stop izakaya night",
-        coordinates: { lat: 35.6735, lng: 139.7631 },
-        tip: "Yurakucho is great for old-school alleys; Shinbashi is better for high-energy after-work spots"
+        description: "Head back before it gets too late; dinner near Shinbashi/Yurakucho works well.",
+        tip: "After a full day trip, one cozy izakaya stop is perfect.",
+        coordinates: { lat: 35.6663, lng: 139.7584 }
       }
     ]
   },
